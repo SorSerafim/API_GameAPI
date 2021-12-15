@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace GameApi.Controllers
 {
+    //comentário
+
     [Route("[controller]")]
     [ApiController]
     public class OgroController : ControllerBase
