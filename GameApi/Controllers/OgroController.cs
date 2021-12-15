@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GameApi.Controllers
 {
-    //comentário
+    //comentário novo
 
     [Route("[controller]")]
     [ApiController]
