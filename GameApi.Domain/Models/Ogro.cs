@@ -5,10 +5,8 @@ using System.Threading.Tasks;
 
 namespace GameApi.Domain.Models
 {
-    public class Ogro
+    public class Ogro : Entidade
     {
-        public int Id { get; private set; }
-
         public int Vida { get; set; }
 
         public int Defesa { get; set; }

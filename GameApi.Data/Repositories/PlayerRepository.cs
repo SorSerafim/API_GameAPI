@@ -1,6 +1,9 @@
-﻿using GameApi.Data.Context;
+﻿using AutoMapper;
+using GameApi.Data.Context;
 using GameApi.Domain.Interfaces;
 using GameApi.Domain.Models;
+using GameApi.Shared.Dtos.Create;
+using GameApi.Shared.Dtos.Read;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,20 +16,29 @@ namespace GameApi.Data.Repositories
     {
         public GameApiContext _context;
 
-        public PlayerRepository(GameApiContext context)
+        public IMapper _mapper;
+
+        public PlayerRepository(GameApiContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        public void AdicionaPlayer(Player player)
+        public void AdicionaPlayer(CreatePlayerDto playerDto)
         {
-            _context.Add(player);
+            Player player = new Player();
+            player.Nome = playerDto.Nome;
+            player.Vida = playerDto.Vida;
+            player.Level = playerDto.Level;
+            _context.Players.Add(player);
             _context.SaveChanges();
         }
 
-        public List<Player> RetornaTodosOsPlayers()
+        public List<ReadPlayerDto> RetornaTodosOsPlayers()
         {
-            return _context.Players.ToList();
+            List<Player> players = _context.Players.ToList();
+            List<ReadPlayerDto> playersDtos = _mapper.Map<List<ReadPlayerDto>>(players);
+            return playersDtos;
         }
 
         public void AtualizaPlayer(int id, Player novoPlayer)

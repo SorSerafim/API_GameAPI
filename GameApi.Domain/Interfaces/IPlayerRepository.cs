@@ -1,4 +1,6 @@
 ﻿using GameApi.Domain.Models;
+using GameApi.Shared.Dtos.Create;
+using GameApi.Shared.Dtos.Read;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +11,9 @@ namespace GameApi.Domain.Interfaces
 {
     public interface IPlayerRepository
     {
-        public void AdicionaPlayer(Player player);
+        public void AdicionaPlayer(CreatePlayerDto player);
 
-        public List<Player> RetornaTodosOsPlayers();
+        public List<ReadPlayerDto> RetornaTodosOsPlayers();
 
         public void AtualizaPlayer(int id, Player novoPlayer);
 

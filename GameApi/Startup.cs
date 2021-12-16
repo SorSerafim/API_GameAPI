@@ -14,6 +14,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace GameApi
@@ -30,6 +31,7 @@ namespace GameApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(Assembly.GetAssembly(typeof(GameApiContext)));
             services.AddDbContext<GameApiContext>(x => x.UseSqlServer(Configuration.GetConnectionString("GameConnection")));
             services.AddTransient<IPlayerRepository, PlayerRepository>();
             services.AddControllers();

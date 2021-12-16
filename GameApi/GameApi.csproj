@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.12">
       <PrivateAssets>all</PrivateAssets>
@@ -15,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GameApi.Data\GameApi.Data.csproj" />
+    <ProjectReference Include="..\GameApi.Shared\GameApi.Shared.csproj" />
   </ItemGroup>
 
 </Project>

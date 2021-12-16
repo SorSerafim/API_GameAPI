@@ -2,6 +2,8 @@
 using GameApi.Data.Repositories;
 using GameApi.Domain.Interfaces;
 using GameApi.Domain.Models;
+using GameApi.Shared.Dtos.Create;
+using GameApi.Shared.Dtos.Read;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -23,13 +25,13 @@ namespace GameApi.Controllers
         }
 
         [HttpGet]
-        public List<Player> RetornaTodos()
+        public List<ReadPlayerDto> RetornaTodos()
         {
             return _repository.RetornaTodosOsPlayers();
         }
 
         [HttpPost]
-        public void Adicionar(Player player)
+        public void Adicionar(CreatePlayerDto player)
         {
             _repository.AdicionaPlayer(player);
         }

@@ -4,16 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameApi.Domain.Models
+namespace GameApi.Shared.Dtos.Read
 {
-    public class Player : Entidade
+    public class ReadPlayerDto
     {
         public string Nome { get; set; }
-        
-        public int Vida { get; set; }
-        
-        public int Level { get; set; }
 
-        public List<Equipamento> Equipamentos { get; set; }
+        public int Vida { get; set; }
+
+        public int Level { get; set; }
     }
 }

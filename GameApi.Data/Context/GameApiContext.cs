@@ -10,13 +10,21 @@ namespace GameApi.Data.Context
 {
     public class GameApiContext : DbContext
     {
+        public DbSet<Ogro> Ogros { get; set; }
+
+        public DbSet<Player> Players { get; set; }
+
+        public DbSet<Equipamento> Equipamentos { get; set; }
+
         public GameApiContext(DbContextOptions<GameApiContext> options) : base(options)
         {
 
         }
 
-        public DbSet<Ogro> Ogros { get; set; }
-
-        public DbSet<Player> Players { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //modelBuilder.Entity<Equipamento>()
+               // .HasOne()
+        }
     }
 }
