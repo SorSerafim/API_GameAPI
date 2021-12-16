@@ -13,5 +13,7 @@ namespace GameApi.Shared.Dtos.Read
         public int Vida { get; set; }
 
         public int Level { get; set; }
+
+        public DateTime HoraDaConsulta { get; set; }
     }
 }
