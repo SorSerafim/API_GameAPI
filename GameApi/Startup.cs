@@ -34,6 +34,7 @@ namespace GameApi
             services.AddAutoMapper(Assembly.GetAssembly(typeof(GameApiContext)));
             services.AddDbContext<GameApiContext>(x => x.UseSqlServer(Configuration.GetConnectionString("GameConnection")));
             services.AddTransient<IPlayerRepository, PlayerRepository>();
+            services.AddTransient<IOgroRepository, OgroRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

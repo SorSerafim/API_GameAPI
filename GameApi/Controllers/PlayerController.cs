@@ -19,7 +19,7 @@ namespace GameApi.Controllers
     {
         private IPlayerRepository _repository;
 
-        public PlayerController( IPlayerRepository repository)
+        public PlayerController(IPlayerRepository repository)
         {
             _repository = repository;
         }
