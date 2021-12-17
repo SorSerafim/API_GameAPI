@@ -35,6 +35,7 @@ namespace GameApi
             services.AddDbContext<GameApiContext>(x => x.UseSqlServer(Configuration.GetConnectionString("GameConnection")));
             services.AddTransient<IPlayerRepository, PlayerRepository>();
             services.AddTransient<IOgroRepository, OgroRepository>();
+            services.AddTransient<IEquipamentoRepository, EquipamentoRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

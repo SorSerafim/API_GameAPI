@@ -23,8 +23,10 @@ namespace GameApi.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Equipamento>()
-               // .HasOne()
+            modelBuilder.Entity<Equipamento>()
+                .HasOne(equipamento => equipamento.Player)
+                .WithMany(player => player.Equipamentos)
+                .HasForeignKey(equipamento => equipamento.PlayerId);
         }
     }
 }

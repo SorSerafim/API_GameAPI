@@ -13,5 +13,7 @@ namespace GameApi.Shared.Dtos.Create
         public int Dano { get; set; }
 
         public int Level { get; set; }
+
+        public int PlayerId { get; set; }
     }
 }

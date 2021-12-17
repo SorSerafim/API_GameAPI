@@ -30,7 +30,7 @@ namespace GameApi.Data.Repositories
             Ogro ogro = new Ogro();
             ogro.Vida = ogroDto.Vida;
             ogro.Defesa = ogroDto.Defesa;
-            ogro.Dano = ogro.Dano;
+            ogro.Dano = ogroDto.Dano;
             _context.Ogros.Add(ogro);
             _context.SaveChanges();
         }
