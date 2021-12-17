@@ -7,6 +7,21 @@ namespace GameApi.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Equipamentos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Dano = table.Column<int>(type: "int", nullable: false),
+                    Level = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Equipamentos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Ogros",
                 columns: table => new
                 {
@@ -37,21 +52,24 @@ namespace GameApi.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Equipamentos",
+                name: "PlayerEquipamentos",
                 columns: table => new
                 {
+                    PlayerId = table.Column<int>(type: "int", nullable: false),
+                    EquipamentoId = table.Column<int>(type: "int", nullable: false),
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Dano = table.Column<int>(type: "int", nullable: false),
-                    Level = table.Column<int>(type: "int", nullable: false),
-                    PlayerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Equipamentos", x => x.Id);
+                    table.PrimaryKey("PK_PlayerEquipamentos", x => new { x.PlayerId, x.EquipamentoId });
                     table.ForeignKey(
-                        name: "FK_Equipamentos_Players_PlayerId",
+                        name: "FK_PlayerEquipamentos_Equipamentos_EquipamentoId",
+                        column: x => x.EquipamentoId,
+                        principalTable: "Equipamentos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PlayerEquipamentos_Players_PlayerId",
                         column: x => x.PlayerId,
                         principalTable: "Players",
                         principalColumn: "Id",
@@ -59,18 +77,21 @@ namespace GameApi.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Equipamentos_PlayerId",
-                table: "Equipamentos",
-                column: "PlayerId");
+                name: "IX_PlayerEquipamentos_EquipamentoId",
+                table: "PlayerEquipamentos",
+                column: "EquipamentoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Equipamentos");
+                name: "Ogros");
 
             migrationBuilder.DropTable(
-                name: "Ogros");
+                name: "PlayerEquipamentos");
+
+            migrationBuilder.DropTable(
+                name: "Equipamentos");
 
             migrationBuilder.DropTable(
                 name: "Players");

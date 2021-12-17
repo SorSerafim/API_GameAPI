@@ -27,10 +27,7 @@ namespace GameApi.Data.Repositories
 
         public void AdicionaOgro(CreateOgroDto ogroDto)
         {
-            Ogro ogro = new Ogro();
-            ogro.Vida = ogroDto.Vida;
-            ogro.Defesa = ogroDto.Defesa;
-            ogro.Dano = ogroDto.Dano;
+            Ogro ogro = _mapper.Map<Ogro>(ogroDto);
             _context.Ogros.Add(ogro);
             _context.SaveChanges();
         }

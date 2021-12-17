@@ -34,12 +34,7 @@ namespace GameApi.Data.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PlayerId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PlayerId");
 
                     b.ToTable("Equipamentos");
                 });
@@ -86,20 +81,51 @@ namespace GameApi.Data.Migrations
                     b.ToTable("Players");
                 });
 
-            modelBuilder.Entity("GameApi.Domain.Models.Equipamento", b =>
+            modelBuilder.Entity("GameApi.Domain.Models.PlayerEquipamentos", b =>
                 {
+                    b.Property<int>("PlayerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EquipamentoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("PlayerId", "EquipamentoId");
+
+                    b.HasIndex("EquipamentoId");
+
+                    b.ToTable("PlayerEquipamentos");
+                });
+
+            modelBuilder.Entity("GameApi.Domain.Models.PlayerEquipamentos", b =>
+                {
+                    b.HasOne("GameApi.Domain.Models.Equipamento", "Equipamento")
+                        .WithMany("PlayerEquipamentos")
+                        .HasForeignKey("EquipamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("GameApi.Domain.Models.Player", "Player")
-                        .WithMany("Equipamentos")
+                        .WithMany("PlayerEquipamentos")
                         .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Equipamento");
+
                     b.Navigation("Player");
+                });
+
+            modelBuilder.Entity("GameApi.Domain.Models.Equipamento", b =>
+                {
+                    b.Navigation("PlayerEquipamentos");
                 });
 
             modelBuilder.Entity("GameApi.Domain.Models.Player", b =>
                 {
-                    b.Navigation("Equipamentos");
+                    b.Navigation("PlayerEquipamentos");
                 });
 #pragma warning restore 612, 618
         }

@@ -26,11 +26,7 @@ namespace GameApi.Data.Repositories
 
         public void AdicionaEquipamento(CreateEquipamentoDto equipamentoDto)
         {
-            Equipamento equipamento = new Equipamento();
-            equipamento.Nome = equipamentoDto.Nome;
-            equipamento.Dano = equipamentoDto.Dano;
-            equipamento.Level = equipamentoDto.Level;
-            equipamento.PlayerId = equipamentoDto.PlayerId;
+            Equipamento equipamento = _mapper.Map<Equipamento>(equipamentoDto);
             _context.Equipamentos.Add(equipamento);
             _context.SaveChanges();
         }

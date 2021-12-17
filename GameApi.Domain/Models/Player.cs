@@ -14,7 +14,7 @@ namespace GameApi.Domain.Models
         public int Vida { get; set; }
         
         public int Level { get; set; }
-        [JsonIgnore]
-        public virtual List<Equipamento> Equipamentos { get; set; }
+        
+        public virtual List<PlayerEquipamentos> PlayerEquipamentos { get; set; }
     }
 }
