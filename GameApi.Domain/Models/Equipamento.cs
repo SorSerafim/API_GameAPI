@@ -15,7 +15,7 @@ namespace GameApi.Domain.Models
 
         public int Level { get; set; }
         
-        public Player Player { get; set; }
+        public virtual Player Player { get; set; }
 
         public int PlayerId { get; set; }
     }

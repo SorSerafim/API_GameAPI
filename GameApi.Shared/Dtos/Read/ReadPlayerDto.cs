@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace GameApi.Shared.Dtos.Read
 {
@@ -14,6 +10,6 @@ namespace GameApi.Shared.Dtos.Read
 
         public int Level { get; set; }
 
-        //public List<Equipamento> Equipamentos { get; set; }
+        public virtual List<ReadEquipamentoDto> Equipamentos { get; set; }
     }
 }

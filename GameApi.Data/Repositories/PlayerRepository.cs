@@ -4,6 +4,7 @@ using GameApi.Domain.Interfaces;
 using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace GameApi.Data.Repositories
 
         public List<ReadPlayerDto> RetornaTodosOsPlayers()
         {
-            List<Player> players = _context.Players.ToList();
+            List<Player> players = _context.Players.Include(x => x.Equipamentos).ToList();
             List<ReadPlayerDto> playersDtos = _mapper.Map<List<ReadPlayerDto>>(players);
             return playersDtos;
         }
