@@ -11,7 +11,7 @@ namespace GameApi.Shared.Dtos.Read
         public int Vida { get; set; }
 
         public int Level { get; set; }
-
+      
         public virtual List<ReadEquipamentoDto> PlayerEquipamentos { get; set; }
     }
 }
