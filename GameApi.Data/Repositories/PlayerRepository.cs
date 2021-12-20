@@ -34,7 +34,7 @@ namespace GameApi.Data.Repositories
 
         public List<ReadPlayerDto> RetornaTodosOsPlayers()
         {
-            List<Player> players = _context.Players.Include(x => x.PlayerEquipamentos).ToList();
+            List<Player> players = _context.Players.Include(x => x.PlayerEquipamentos).ThenInclude(x => x.Equipamento).ToList();
             List<ReadPlayerDto> playersDtos = _mapper.Map<List<ReadPlayerDto>>(players);
             return playersDtos;
         }

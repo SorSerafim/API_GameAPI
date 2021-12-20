@@ -11,7 +11,7 @@ namespace GameApi.Domain.Interfaces
 {
     public interface IPlayerRepository
     {
-        public void AdicionaPlayer(CreatePlayerDto player);
+        public void AdicionaPlayer(CreatePlayerDto playerDto);
 
         public List<ReadPlayerDto> RetornaTodosOsPlayers();
 

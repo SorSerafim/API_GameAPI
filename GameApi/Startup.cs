@@ -36,6 +36,7 @@ namespace GameApi
             services.AddTransient<IPlayerRepository, PlayerRepository>();
             services.AddTransient<IOgroRepository, OgroRepository>();
             services.AddTransient<IEquipamentoRepository, EquipamentoRepository>();
+            services.AddTransient<IPlayerEquipamentoRepository, PlayerEquipamentoRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace GameApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class EquipamentoController : ControllerBase
     {

@@ -4,6 +4,7 @@ using GameApi.Domain.Interfaces;
 using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace GameApi.Data.Repositories
 
         public List<ReadEquipamentoDto> RetornaTodosOsEquipamentos()
         {
-            List<Equipamento> equipamentos = _context.Equipamentos.ToList();
+            List<Equipamento> equipamentos = _context.Equipamentos.Include(x => x.PlayerEquipamentos).ToList();
             List<ReadEquipamentoDto> equipamentosDtos = _mapper.Map<List<ReadEquipamentoDto>>(equipamentos);
             return equipamentosDtos;
         }

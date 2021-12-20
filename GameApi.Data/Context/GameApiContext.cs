@@ -16,6 +16,8 @@ namespace GameApi.Data.Context
 
         public DbSet<Equipamento> Equipamentos { get; set; }
 
+        public DbSet<PlayerEquipamentos> PlayerEquipamentos { get; set; }
+
         public GameApiContext(DbContextOptions<GameApiContext> options) : base(options)
         {
 

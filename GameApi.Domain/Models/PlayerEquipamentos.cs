@@ -10,9 +10,9 @@ namespace GameApi.Domain.Models
     {
         public virtual Player Player { get; set; }
 
-        public int PlayerId { get; set; }
-
         public virtual Equipamento Equipamento { get; set; }
+
+        public int PlayerId { get; set; }
 
         public int EquipamentoId { get; set; }
     }
