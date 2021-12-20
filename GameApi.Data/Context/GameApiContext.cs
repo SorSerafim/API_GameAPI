@@ -16,6 +16,8 @@ namespace GameApi.Data.Context
 
         public DbSet<Equipamento> Equipamentos { get; set; }
 
+        public DbSet<PlayerEquipamentos> PlayerEquipamentos { get; set; }
+
         public GameApiContext(DbContextOptions<GameApiContext> options) : base(options)
         {
 
@@ -23,8 +25,18 @@ namespace GameApi.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Equipamento>()
-               // .HasOne()
+            modelBuilder.Entity<PlayerEquipamentos>()
+                .HasKey(playerEquipamento => new { playerEquipamento.PlayerId, playerEquipamento.EquipamentoId });
+
+            modelBuilder.Entity<PlayerEquipamentos>()
+                .HasOne(playerEquipamentos => playerEquipamentos.Player)
+                .WithMany(player => player.PlayerEquipamentos)
+                .HasForeignKey(playerEquipamentos => playerEquipamentos.PlayerId);
+
+            modelBuilder.Entity<PlayerEquipamentos>()
+                .HasOne(playerEquipamentos => playerEquipamentos.Equipamento)
+                .WithMany(equipamento => equipamento.PlayerEquipamentos)
+                .HasForeignKey(playerEquipamentos => playerEquipamentos.EquipamentoId);
         }
     }
 }

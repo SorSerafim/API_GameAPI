@@ -13,13 +13,13 @@ using System.Threading.Tasks;
 
 namespace GameApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class PlayerController : ControllerBase
     {
         private IPlayerRepository _repository;
 
-        public PlayerController( IPlayerRepository repository)
+        public PlayerController(IPlayerRepository repository)
         {
             _repository = repository;
         }

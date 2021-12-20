@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace GameApi.Domain.Models
@@ -13,7 +14,7 @@ namespace GameApi.Domain.Models
         public int Vida { get; set; }
         
         public int Level { get; set; }
-
-        public List<Equipamento> Equipamentos { get; set; }
+        
+        public virtual List<PlayerEquipamentos> PlayerEquipamentos { get; set; }
     }
 }

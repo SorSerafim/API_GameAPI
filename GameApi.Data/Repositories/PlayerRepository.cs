@@ -4,6 +4,7 @@ using GameApi.Domain.Interfaces;
 using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,17 +27,14 @@ namespace GameApi.Data.Repositories
 
         public void AdicionaPlayer(CreatePlayerDto playerDto)
         {
-            Player player = new Player();
-            player.Nome = playerDto.Nome;
-            player.Vida = playerDto.Vida;
-            player.Level = playerDto.Level;
+            Player player = _mapper.Map<Player>(playerDto);
             _context.Players.Add(player);
             _context.SaveChanges();
         }
 
         public List<ReadPlayerDto> RetornaTodosOsPlayers()
         {
-            List<Player> players = _context.Players.ToList();
+            List<Player> players = _context.Players.Include(x => x.PlayerEquipamentos).ThenInclude(x => x.Equipamento).ToList();
             List<ReadPlayerDto> playersDtos = _mapper.Map<List<ReadPlayerDto>>(players);
             return playersDtos;
         }

@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
 using GameApi.Domain.Models;
+using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameApi.Data.Profiles
 {
@@ -13,7 +10,8 @@ namespace GameApi.Data.Profiles
     {
         public PlayerProfile()
         {
-            CreateMap<Player, ReadPlayerDto>();
+            CreateMap<Player, ReadPlayerDto>().ForMember(dest => dest.PlayerEquipamentos,opt => opt.MapFrom(x => x.PlayerEquipamentos.Select(y => y.Equipamento)));
+            CreateMap<CreatePlayerDto, Player>();
         }
     }
 }

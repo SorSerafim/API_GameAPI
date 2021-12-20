@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace GameApi.Domain.Interfaces
 {
-    public interface IPlayerRepository
+    public interface IOgroRepository
     {
-        public void AdicionaPlayer(CreatePlayerDto playerDto);
+        public void AdicionaOgro(CreateOgroDto ogroDto);
 
-        public List<ReadPlayerDto> RetornaTodosOsPlayers();
+        public List<ReadOgroDto> RetornaTodosOsOgros();
 
-        public void AtualizaPlayer(int id, Player novoPlayer);
+        public void AtualizaOgro(int id, Ogro novoOgro);
 
-        public void DeletaPlayer(int id);
+        public void DeletaOgro(int id);
     }
 }

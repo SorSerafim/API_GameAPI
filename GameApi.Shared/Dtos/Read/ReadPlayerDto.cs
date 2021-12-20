@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace GameApi.Shared.Dtos.Read
 {
     public class ReadPlayerDto
     {
+        public int Id { get; set; }
+
         public string Nome { get; set; }
 
         public int Vida { get; set; }
 
         public int Level { get; set; }
-
-        public DateTime HoraDaConsulta { get; set; }
+      
+        public virtual List<ReadEquipamentoDto> PlayerEquipamentos { get; set; }
     }
 }
