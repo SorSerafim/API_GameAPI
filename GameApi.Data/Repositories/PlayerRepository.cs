@@ -25,18 +25,15 @@ namespace GameApi.Data.Repositories
             _mapper = mapper;
         }
 
-        public void AdicionaPlayer(CreatePlayerDto playerDto)
+        public void AdicionaPlayer(Player player)
         {
-            Player player = _mapper.Map<Player>(playerDto);
             _context.Players.Add(player);
             _context.SaveChanges();
         }
 
-        public List<ReadPlayerDto> RetornaTodosOsPlayers()
+        public List<Player> RetornaTodosOsPlayers()
         {
-            List<Player> players = _context.Players.Include(x => x.PlayerEquipamentos).ThenInclude(x => x.Equipamento).ToList();
-            List<ReadPlayerDto> playersDtos = _mapper.Map<List<ReadPlayerDto>>(players);
-            return playersDtos;
+            return _context.Players.Include(x => x.PlayerEquipamentos).ThenInclude(x => x.Equipamento).ToList();
         }
 
         public void AtualizaPlayer(int id, Player novoPlayer)
