@@ -28,15 +28,29 @@ namespace GameApi.Data.Repositories
         public void AdicionaPlayerEquipamento(CreatePlayerEquipamentoDto playerEquipamentoDto)
         {
             PlayerEquipamentos playerEquipamentos = _mapper.Map<PlayerEquipamentos>(playerEquipamentoDto);
-            _context.PlayerEquipamentos.Add(playerEquipamentos);
+            Player players = _context.Players.FirstOrDefault(x => x.Id == playerEquipamentos.PlayerId);
+            Equipamento equipamentos = _context.Equipamentos.FirstOrDefault(x => x.Id == playerEquipamentos.EquipamentoId);
+            if (players != null && equipamentos != null)
+            {
+                _context.PlayerEquipamentos.Add(playerEquipamentos);
+            }
             _context.SaveChanges();
         }
 
-        public List<PlayersDoEquipamento> RetornaTodosOsPlayersEquipamentos()
+        public void DeletaPlayerEquipamento(int id)
         {
-            List<PlayerEquipamentos> playerEquipamentos = _context.PlayerEquipamentos.Include(x => x.Player).Include(x => x.Equipamento).ToList();
-            List<PlayersDoEquipamento> playerEquipamentoDtos = _mapper.Map<List<PlayersDoEquipamento>>(playerEquipamentos);
-            return playerEquipamentoDtos;
+            PlayerEquipamentos playerEquipamentos = _context.PlayerEquipamentos.FirstOrDefault(x => x.Id==id);
+            if(playerEquipamentos != null)
+            {
+                _context.Remove(playerEquipamentos);
+                _context.SaveChanges();
+            }
+        }
+
+        public List<PlayerEquipamentos> RetornaTodosOsPlayerEquipamentos()
+        {
+            List<PlayerEquipamentos> playerEquipamentos = _context.PlayerEquipamentos.ToList();
+            return playerEquipamentos;
         }
     }
 }

@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameApi.Domain", "GameApi.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameApi.Data", "GameApi.Data\GameApi.Data.csproj", "{725DF860-DD3B-4024-921F-8EBCCF3FB0A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameApi.Shared", "GameApi.Shared\GameApi.Shared.csproj", "{A565E20F-F760-4FF9-B0E8-605E27B1682E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameApi.Shared", "GameApi.Shared\GameApi.Shared.csproj", "{A565E20F-F760-4FF9-B0E8-605E27B1682E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameApi.Application", "GameApi.Application\GameApi.Application.csproj", "{2EBF61E4-628B-40E9-B127-570A0A5A7C19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{A565E20F-F760-4FF9-B0E8-605E27B1682E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A565E20F-F760-4FF9-B0E8-605E27B1682E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A565E20F-F760-4FF9-B0E8-605E27B1682E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EBF61E4-628B-40E9-B127-570A0A5A7C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EBF61E4-628B-40E9-B127-570A0A5A7C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EBF61E4-628B-40E9-B127-570A0A5A7C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EBF61E4-628B-40E9-B127-570A0A5A7C19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

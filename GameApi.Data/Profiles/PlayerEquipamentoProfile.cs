@@ -15,8 +15,6 @@ namespace GameApi.Data.Profiles
         public PlayerEquipamentoProfile()
         {
             CreateMap<CreatePlayerEquipamentoDto, PlayerEquipamentos>();
-            CreateMap<PlayerEquipamentos, PlayersDoEquipamento>();
-            CreateMap<PlayerEquipamentos, EquipamentosDoPlayer>();
         }
     }
 }

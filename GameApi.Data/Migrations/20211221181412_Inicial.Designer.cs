@@ -9,15 +9,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameApi.Data.Migrations
 {
     [DbContext(typeof(GameApiContext))]
-    [Migration("20211217213632_inicial")]
-    partial class inicial
+    [Migration("20211221181412_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.12")
+                .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("GameApi.Domain.Models.Equipamento", b =>
@@ -85,18 +85,22 @@ namespace GameApi.Data.Migrations
 
             modelBuilder.Entity("GameApi.Domain.Models.PlayerEquipamentos", b =>
                 {
-                    b.Property<int>("PlayerId")
-                        .HasColumnType("int");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("EquipamentoId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
+                    b.Property<int>("PlayerId")
                         .HasColumnType("int");
 
-                    b.HasKey("PlayerId", "EquipamentoId");
+                    b.HasKey("Id");
 
                     b.HasIndex("EquipamentoId");
+
+                    b.HasIndex("PlayerId");
 
                     b.ToTable("PlayerEquipamentos");
                 });
