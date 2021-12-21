@@ -1,4 +1,5 @@
 ﻿using GameApi.Domain.Interfaces;
+using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
 using Microsoft.AspNetCore.Http;
@@ -22,15 +23,22 @@ namespace GameApi.Controllers
         }
 
         [HttpGet]
-        public List<PlayersDoEquipamento> RetornaTodos()
+        public List<PlayerEquipamentos> RetornaTodos()
         {
-            return _repository.RetornaTodosOsPlayersEquipamentos();
+            return _repository.RetornaTodosOsPlayerEquipamentos();
         }
 
         [HttpPost]
         public void AdicionaEquipamentoAosPlayers(CreatePlayerEquipamentoDto playerEquipamentoDto)
         {
             _repository.AdicionaPlayerEquipamento(playerEquipamentoDto);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeletaPorId(int id)
+        {
+            _repository.DeletaPlayerEquipamento(id);
+            return Ok();
         }
     }
 }

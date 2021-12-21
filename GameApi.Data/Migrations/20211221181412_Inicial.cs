@@ -2,7 +2,7 @@
 
 namespace GameApi.Data.Migrations
 {
-    public partial class inicial : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,13 +55,14 @@ namespace GameApi.Data.Migrations
                 name: "PlayerEquipamentos",
                 columns: table => new
                 {
-                    PlayerId = table.Column<int>(type: "int", nullable: false),
-                    EquipamentoId = table.Column<int>(type: "int", nullable: false),
                     Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PlayerId = table.Column<int>(type: "int", nullable: false),
+                    EquipamentoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PlayerEquipamentos", x => new { x.PlayerId, x.EquipamentoId });
+                    table.PrimaryKey("PK_PlayerEquipamentos", x => x.Id);
                     table.ForeignKey(
                         name: "FK_PlayerEquipamentos_Equipamentos_EquipamentoId",
                         column: x => x.EquipamentoId,
@@ -80,6 +81,11 @@ namespace GameApi.Data.Migrations
                 name: "IX_PlayerEquipamentos_EquipamentoId",
                 table: "PlayerEquipamentos",
                 column: "EquipamentoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PlayerEquipamentos_PlayerId",
+                table: "PlayerEquipamentos",
+                column: "PlayerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

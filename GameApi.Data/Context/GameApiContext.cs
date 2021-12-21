@@ -26,7 +26,7 @@ namespace GameApi.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PlayerEquipamentos>()
-                .HasKey(playerEquipamento => new { playerEquipamento.PlayerId, playerEquipamento.EquipamentoId });
+                .HasKey(playerEquipamento => playerEquipamento.Id);
 
             modelBuilder.Entity<PlayerEquipamentos>()
                 .HasOne(playerEquipamentos => playerEquipamentos.Player)

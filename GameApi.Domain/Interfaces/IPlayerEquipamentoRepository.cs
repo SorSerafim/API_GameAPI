@@ -1,4 +1,5 @@
-﻿using GameApi.Shared.Dtos.Create;
+﻿using GameApi.Domain.Models;
+using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace GameApi.Domain.Interfaces
     public interface IPlayerEquipamentoRepository
     {
         public void AdicionaPlayerEquipamento(CreatePlayerEquipamentoDto playerEquipamentoDto);
-
-        public List<PlayersDoEquipamento> RetornaTodosOsPlayersEquipamentos();
+        public List<PlayerEquipamentos> RetornaTodosOsPlayerEquipamentos();
+        public void DeletaPlayerEquipamento(int id);
     }
 }
