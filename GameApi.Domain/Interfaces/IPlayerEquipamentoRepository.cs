@@ -11,7 +11,7 @@ namespace GameApi.Domain.Interfaces
 {
     public interface IPlayerEquipamentoRepository
     {
-        public void AdicionaPlayerEquipamento(CreatePlayerEquipamentoDto playerEquipamentoDto);
+        public void AdicionaPlayerEquipamento(PlayerEquipamentos playerEquipamentos);
         public List<PlayerEquipamentos> RetornaTodosOsPlayerEquipamentos();
         public void DeletaPlayerEquipamento(int id);
     }

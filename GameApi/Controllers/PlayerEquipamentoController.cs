@@ -1,4 +1,5 @@
-﻿using GameApi.Domain.Interfaces;
+﻿using GameApi.Application.Services;
+using GameApi.Domain.Interfaces;
 using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
@@ -16,10 +17,12 @@ namespace GameApi.Controllers
     public class PlayerEquipamentoController : ControllerBase
     {
         private IPlayerEquipamentoRepository _repository;
+        private PlayerEquipamentoService _service;
 
-        public PlayerEquipamentoController(IPlayerEquipamentoRepository repository)
+        public PlayerEquipamentoController(IPlayerEquipamentoRepository repository, PlayerEquipamentoService service)
         {
             _repository = repository;
+            _service = service;
         }
 
         [HttpGet]
@@ -31,7 +34,7 @@ namespace GameApi.Controllers
         [HttpPost]
         public void AdicionaEquipamentoAosPlayers(CreatePlayerEquipamentoDto playerEquipamentoDto)
         {
-            _repository.AdicionaPlayerEquipamento(playerEquipamentoDto);
+            _service.AdicionaPlayerEquipamento(playerEquipamentoDto);
         }
 
         [HttpDelete("{id}")]

@@ -60,5 +60,11 @@ namespace GameApi.Data.Repositories
                 _context.SaveChanges();
             }
         }
+
+        public Equipamento RetornaEquipamentoPorId(int id)
+        {
+            Equipamento equipamento = _context.Equipamentos.FirstOrDefault(x => x.Id == id);
+            return equipamento;
+        }
     }
 }

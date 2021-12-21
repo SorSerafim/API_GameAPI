@@ -60,5 +60,11 @@ namespace GameApi.Data.Repositories
                 _context.SaveChanges();
             }
         }
+
+        public Player RetornaPlayerPorId(int id)
+        {
+            Player player = _context.Players.FirstOrDefault(x => x.Id==id);
+            return player;
+        }
     }
 }

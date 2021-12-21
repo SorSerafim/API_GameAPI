@@ -25,15 +25,9 @@ namespace GameApi.Data.Repositories
             _mapper = mapper;
         }
 
-        public void AdicionaPlayerEquipamento(CreatePlayerEquipamentoDto playerEquipamentoDto)
+        public void AdicionaPlayerEquipamento(PlayerEquipamentos playerEquipamentos)
         {
-            PlayerEquipamentos playerEquipamentos = _mapper.Map<PlayerEquipamentos>(playerEquipamentoDto);
-            Player players = _context.Players.FirstOrDefault(x => x.Id == playerEquipamentos.PlayerId);
-            Equipamento equipamentos = _context.Equipamentos.FirstOrDefault(x => x.Id == playerEquipamentos.EquipamentoId);
-            if (players != null && equipamentos != null)
-            {
-                _context.PlayerEquipamentos.Add(playerEquipamentos);
-            }
+            _context.PlayerEquipamentos.Add(playerEquipamentos);
             _context.SaveChanges();
         }
 
