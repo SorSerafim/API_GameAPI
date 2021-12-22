@@ -9,27 +9,24 @@ namespace GameApi.Application.Services
 {
     public class PlayerService
     {
-        private IPlayerRepository _playerRepository;
+        private IPlayerRepository _repository;
         private IMapper _mapper;
 
-        public PlayerService(IPlayerRepository playerRepository, IMapper mapper)
+        public PlayerService(IPlayerRepository repository, IMapper mapper)
         {
-            _playerRepository = playerRepository;
+            _repository = repository;
             _mapper = mapper;
         }
 
         public void AdicionaPlayer(CreatePlayerDto playerDto)
         {
-            Player player = new Player();
-            player.Nome = playerDto.Nome;
-            player.Vida = playerDto.Vida;
-            player.Level = playerDto.Level;
-            _playerRepository.AdicionaPlayer(player);
+            Player player = _mapper.Map<Player>(playerDto);
+            _repository.AdicionaPlayer(player);
         }
 
         public List<ReadPlayerDto> RetornaTodosOsPlayers()
         {
-            List<Player> players = _playerRepository.RetornaTodosOsPlayers();
+            List<Player> players = _repository.RetornaTodosOsPlayers();
             List<ReadPlayerDto> playerDtos = new List<ReadPlayerDto>();
             foreach(Player player in players)
             {

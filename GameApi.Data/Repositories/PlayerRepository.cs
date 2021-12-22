@@ -12,12 +12,9 @@ namespace GameApi.Data.Repositories
     {
         public GameApiContext _context;
 
-        public IMapper _mapper;
-
-        public PlayerRepository(GameApiContext context, IMapper mapper)
+        public PlayerRepository(GameApiContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
         public void AdicionaPlayer(Player player)

@@ -14,26 +14,20 @@ namespace GameApi.Data.Repositories
     {
         private GameApiContext _context;
 
-        private IMapper _mapper;
-
-        public EquipamentoRepository(GameApiContext context, IMapper mapper)
+        public EquipamentoRepository(GameApiContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
-        public void AdicionaEquipamento(CreateEquipamentoDto equipamentoDto)
+        public void AdicionaEquipamento(Equipamento equipamento)
         {
-            Equipamento equipamento = _mapper.Map<Equipamento>(equipamentoDto);
             _context.Equipamentos.Add(equipamento);
             _context.SaveChanges();
         }
 
-        public List<ReadEquipamentoDto> RetornaTodosOsEquipamentos()
+        public List<Equipamento> RetornaTodosOsEquipamentos()
         {
-            List<Equipamento> equipamentos = _context.Equipamentos.Include(x => x.PlayerEquipamentos).ToList();
-            List<ReadEquipamentoDto> equipamentosDtos = _mapper.Map<List<ReadEquipamentoDto>>(equipamentos);
-            return equipamentosDtos;
+            return _context.Equipamentos.Include(x => x.PlayerEquipamentos).ToList();
         }
 
         public void AtualizaEquipamento(int id, Equipamento novoEquipamento)

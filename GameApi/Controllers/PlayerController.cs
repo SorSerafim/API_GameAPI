@@ -28,9 +28,9 @@ namespace GameApi.Controllers
         }
 
         [HttpPost]
-        public void Adicionar(CreatePlayerDto player)
+        public void Adicionar(CreatePlayerDto playerDto)
         {
-            _service.AdicionaPlayer(player);
+            _service.AdicionaPlayer(playerDto);
         }
 
         [HttpDelete("{id}")]

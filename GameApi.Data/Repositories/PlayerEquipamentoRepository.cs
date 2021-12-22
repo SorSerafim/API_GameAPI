@@ -11,12 +11,9 @@ namespace GameApi.Data.Repositories
     {
         private GameApiContext _context;
 
-        private IMapper _mapper;
-
-        public PlayerEquipamentoRepository(GameApiContext context, IMapper mapper)
+        public PlayerEquipamentoRepository(GameApiContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
         public void AdicionaPlayerEquipamento(PlayerEquipamentos playerEquipamentos)

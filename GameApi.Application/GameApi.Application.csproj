@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GameApi.Data\GameApi.Data.csproj" />
     <ProjectReference Include="..\GameApi.Domain\GameApi.Domain.csproj" />
   </ItemGroup>
 
