@@ -1,15 +1,9 @@
-﻿using GameApi.Data.Context;
-using GameApi.Data.Repositories;
-using GameApi.Domain.Interfaces;
+﻿using GameApi.Domain.Interfaces;
 using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GameApi.Controllers
 {

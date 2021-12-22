@@ -2,14 +2,8 @@
 using GameApi.Data.Context;
 using GameApi.Domain.Interfaces;
 using GameApi.Domain.Models;
-using GameApi.Shared.Dtos.Create;
-using GameApi.Shared.Dtos.Read;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameApi.Data.Repositories
 {
