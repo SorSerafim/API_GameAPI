@@ -2,14 +2,9 @@
 using GameApi.Data.Context;
 using GameApi.Domain.Interfaces;
 using GameApi.Domain.Models;
-using GameApi.Shared.Dtos.Create;
-using GameApi.Shared.Dtos.Read;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameApi.Data.Repositories
 {
@@ -17,26 +12,20 @@ namespace GameApi.Data.Repositories
     {
         public GameApiContext _context;
 
-        public IMapper _mapper;
-
-        public PlayerRepository(GameApiContext context, IMapper mapper)
+        public PlayerRepository(GameApiContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
-        public void AdicionaPlayer(CreatePlayerDto playerDto)
+        public void AdicionaPlayer(Player player)
         {
-            Player player = _mapper.Map<Player>(playerDto);
             _context.Players.Add(player);
             _context.SaveChanges();
         }
 
-        public List<ReadPlayerDto> RetornaTodosOsPlayers()
+        public List<Player> RetornaTodosOsPlayers()
         {
-            List<Player> players = _context.Players.Include(x => x.PlayerEquipamentos).ThenInclude(x => x.Equipamento).ToList();
-            List<ReadPlayerDto> playersDtos = _mapper.Map<List<ReadPlayerDto>>(players);
-            return playersDtos;
+            return _context.Players.Include(x => x.PlayerEquipamentos).ThenInclude(x => x.Equipamento).ToList();
         }
 
         public void AtualizaPlayer(int id, Player novoPlayer)
@@ -59,6 +48,12 @@ namespace GameApi.Data.Repositories
                 _context.Remove(player);
                 _context.SaveChanges();
             }
+        }
+
+        public Player RetornaPlayerPorId(int id)
+        {
+            Player player = _context.Players.FirstOrDefault(x => x.Id==id);
+            return player;
         }
     }
 }

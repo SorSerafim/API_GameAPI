@@ -1,15 +1,10 @@
-﻿using GameApi.Data.Context;
-using GameApi.Data.Repositories;
+﻿using GameApi.Application.Services;
 using GameApi.Domain.Interfaces;
 using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GameApi.Controllers
 {
@@ -18,22 +13,24 @@ namespace GameApi.Controllers
     public class PlayerController : ControllerBase
     {
         private IPlayerRepository _repository;
+        private PlayerService _service;
 
-        public PlayerController(IPlayerRepository repository)
+        public PlayerController(IPlayerRepository repository, PlayerService service)
         {
             _repository = repository;
+            _service = service;
         }
 
         [HttpGet]
         public List<ReadPlayerDto> RetornaTodos()
         {
-            return _repository.RetornaTodosOsPlayers();
+            return _service.RetornaTodosOsPlayers();
         }
 
         [HttpPost]
-        public void Adicionar(CreatePlayerDto player)
+        public void Adicionar(CreatePlayerDto playerDto)
         {
-            _repository.AdicionaPlayer(player);
+            _service.AdicionaPlayer(playerDto);
         }
 
         [HttpDelete("{id}")]

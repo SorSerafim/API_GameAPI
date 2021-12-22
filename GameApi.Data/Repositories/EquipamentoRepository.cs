@@ -5,11 +5,8 @@ using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameApi.Data.Repositories
 {
@@ -17,26 +14,20 @@ namespace GameApi.Data.Repositories
     {
         private GameApiContext _context;
 
-        private IMapper _mapper;
-
-        public EquipamentoRepository(GameApiContext context, IMapper mapper)
+        public EquipamentoRepository(GameApiContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
-        public void AdicionaEquipamento(CreateEquipamentoDto equipamentoDto)
+        public void AdicionaEquipamento(Equipamento equipamento)
         {
-            Equipamento equipamento = _mapper.Map<Equipamento>(equipamentoDto);
             _context.Equipamentos.Add(equipamento);
             _context.SaveChanges();
         }
 
-        public List<ReadEquipamentoDto> RetornaTodosOsEquipamentos()
+        public List<Equipamento> RetornaTodosOsEquipamentos()
         {
-            List<Equipamento> equipamentos = _context.Equipamentos.Include(x => x.PlayerEquipamentos).ToList();
-            List<ReadEquipamentoDto> equipamentosDtos = _mapper.Map<List<ReadEquipamentoDto>>(equipamentos);
-            return equipamentosDtos;
+            return _context.Equipamentos.Include(x => x.PlayerEquipamentos).ToList();
         }
 
         public void AtualizaEquipamento(int id, Equipamento novoEquipamento)
@@ -59,6 +50,12 @@ namespace GameApi.Data.Repositories
                 _context.Remove(equipamento);
                 _context.SaveChanges();
             }
+        }
+
+        public Equipamento RetornaEquipamentoPorId(int id)
+        {
+            Equipamento equipamento = _context.Equipamentos.FirstOrDefault(x => x.Id == id);
+            return equipamento;
         }
     }
 }

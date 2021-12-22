@@ -4,12 +4,8 @@ using GameApi.Domain.Interfaces;
 using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameApi.Data.Repositories
 {
@@ -17,26 +13,20 @@ namespace GameApi.Data.Repositories
     {
         public GameApiContext _context;
 
-        private IMapper _mapper;
-
-        public OgroRepository(GameApiContext context, IMapper mapper)
+        public OgroRepository(GameApiContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
-        public void AdicionaOgro(CreateOgroDto ogroDto)
+        public void AdicionaOgro(Ogro ogro)
         {
-            Ogro ogro = _mapper.Map<Ogro>(ogroDto);
             _context.Ogros.Add(ogro);
             _context.SaveChanges();
         }
 
-        public List<ReadOgroDto> RetornaTodosOsOgros()
+        public List<Ogro> RetornaTodosOsOgros()
         {
-            List<Ogro> ogros = _context.Ogros.ToList();
-            List<ReadOgroDto> ogrosDtos = _mapper.Map<List<ReadOgroDto>>(ogros);
-            return ogrosDtos;
+            return _context.Ogros.ToList();
         }
 
         public void AtualizaOgro(int id, Ogro novoOgro)

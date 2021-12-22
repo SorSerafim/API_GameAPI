@@ -4,4 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GameApi.Data\GameApi.Data.csproj" />
+    <ProjectReference Include="..\GameApi.Domain\GameApi.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,15 +1,10 @@
-﻿using GameApi.Data.Context;
-using GameApi.Data.Repositories;
+﻿using GameApi.Application.Services;
 using GameApi.Domain.Interfaces;
 using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GameApi.Controllers
 {
@@ -18,22 +13,24 @@ namespace GameApi.Controllers
     public class OgroController : ControllerBase
     {
         private  IOgroRepository _repository;
+        private OgroService _service;
 
-        public OgroController(IOgroRepository repository)
+        public OgroController(IOgroRepository repository, OgroService service)
         {
             _repository = repository;
+            _service = service;
         }
 
         [HttpGet]
         public List<ReadOgroDto> RetornaTodos()
         {
-            return _repository.RetornaTodosOsOgros();
+            return _service.RetornaTodosOsOgros();
         }
 
         [HttpPost]
-        public void Adicionar(CreateOgroDto ogro)
+        public void Adicionar(CreateOgroDto ogroDto)
         {
-            _repository.AdicionaOgro(ogro);
+            _service.AdicionaOgro(ogroDto);
         }
 
         [HttpDelete("{id}")]

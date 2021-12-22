@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GameApi.Domain.Models
+﻿namespace GameApi.Domain.Models
 {
     public class Ogro : Entidade
     {

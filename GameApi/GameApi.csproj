@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GameApi.Application\GameApi.Application.csproj" />
     <ProjectReference Include="..\GameApi.Data\GameApi.Data.csproj" />
     <ProjectReference Include="..\GameApi.Shared\GameApi.Shared.csproj" />
   </ItemGroup>
