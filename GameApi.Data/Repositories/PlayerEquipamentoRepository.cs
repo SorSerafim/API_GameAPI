@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using GameApi.Data.Context;
+﻿using GameApi.Data.Context;
 using GameApi.Domain.Interfaces;
 using GameApi.Domain.Models;
 using System.Collections.Generic;
@@ -22,20 +21,19 @@ namespace GameApi.Data.Repositories
             _context.SaveChanges();
         }
 
-        public void DeletaPlayerEquipamento(int id)
-        {
-            PlayerEquipamentos playerEquipamentos = _context.PlayerEquipamentos.FirstOrDefault(x => x.Id==id);
-            if(playerEquipamentos != null)
-            {
-                _context.Remove(playerEquipamentos);
-                _context.SaveChanges();
-            }
-        }
-
         public List<PlayerEquipamentos> RetornaTodosOsPlayerEquipamentos()
         {
-            List<PlayerEquipamentos> playerEquipamentos = _context.PlayerEquipamentos.ToList();
-            return playerEquipamentos;
+            return _context.PlayerEquipamentos.ToList(); ;
+        }
+
+        public void DeletaPlayerEquipamento(PlayerEquipamentos playerEquipamentos)
+        {
+            _context.Remove(playerEquipamentos);
+            _context.SaveChanges();
+        }
+        public PlayerEquipamentos RetornaPlayerEquipamentoPorId(int id)
+        {
+            return _context.PlayerEquipamentos.FirstOrDefault(x => x.Id == id);
         }
     }
 }

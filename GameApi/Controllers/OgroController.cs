@@ -1,5 +1,4 @@
 ﻿using GameApi.Application.Services;
-using GameApi.Domain.Interfaces;
 using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
@@ -12,12 +11,10 @@ namespace GameApi.Controllers
     [ApiController]
     public class OgroController : ControllerBase
     {
-        private  IOgroRepository _repository;
         private OgroService _service;
 
-        public OgroController(IOgroRepository repository, OgroService service)
+        public OgroController(OgroService service)
         {
-            _repository = repository;
             _service = service;
         }
 
@@ -36,14 +33,14 @@ namespace GameApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeletaPorId(int id)
         {
-            _repository.DeletaOgro(id);
+            _service.DeletaOgro(id);
             return Ok();
         }
 
         [HttpPut("{id}")]
         public IActionResult AtualizaPorId(int id, Ogro novoOgro)
         {
-            _repository.AtualizaOgro(id, novoOgro);
+            _service.AtualizaOgro(id, novoOgro);
             return Ok();
         }
     }

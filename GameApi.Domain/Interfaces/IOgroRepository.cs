@@ -7,9 +7,10 @@ namespace GameApi.Domain.Interfaces
 {
     public interface IOgroRepository
     {
-        public void AdicionaOgro(Ogro ogro);
-        public List<Ogro> RetornaTodosOsOgros();
-        public void AtualizaOgro(int id, Ogro novoOgro);
-        public void DeletaOgro(int id);
+        Ogro RetornaOgroPorId(int id);
+        void AdicionaOgro(Ogro ogro);
+        List<Ogro> RetornaTodosOsOgros();
+        void AtualizaOgro(Ogro novoOgro);
+        void DeletaOgro(Ogro ogro);
     }
 }

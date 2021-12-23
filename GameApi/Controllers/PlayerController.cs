@@ -1,6 +1,4 @@
 ﻿using GameApi.Application.Services;
-using GameApi.Domain.Interfaces;
-using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
 using Microsoft.AspNetCore.Mvc;
@@ -12,12 +10,10 @@ namespace GameApi.Controllers
     [ApiController]
     public class PlayerController : ControllerBase
     {
-        private IPlayerRepository _repository;
         private PlayerService _service;
 
-        public PlayerController(IPlayerRepository repository, PlayerService service)
+        public PlayerController(PlayerService service)
         {
-            _repository = repository;
             _service = service;
         }
 
@@ -36,14 +32,14 @@ namespace GameApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeletaPorId(int id)
         {
-            _repository.DeletaPlayer(id);
+            _service.DeletaPlayer(id);
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public IActionResult AtualizaPorId(int id, Player novoPlayer)
+        public IActionResult AtualizaPorId(int id, CreatePlayerDto playerDto)
         {
-            _repository.AtualizaPlayer(id, novoPlayer);
+            _service.AtualizaPlayer(id, playerDto);
             return Ok();
         }
     }

@@ -36,5 +36,31 @@ namespace GameApi.Application.Services
             }
             return ogrosDtos;
         }
+
+        public void AtualizaOgro(int id, Ogro novoOgro)
+        {
+            Ogro ogro = _repository.RetornaOgroPorId(id);
+            if(ogro != null)
+            {
+                ogro.Vida = novoOgro.Vida;
+                ogro.Defesa = novoOgro.Defesa;
+                ogro.Dano = novoOgro.Dano;
+                _repository.AtualizaOgro(ogro);
+            }
+        }
+
+        public void DeletaOgro(int id)
+        {
+            Ogro ogro = _repository.RetornaOgroPorId(id);
+            if(ogro != null)
+            {
+                _repository.DeletaOgro(ogro);
+            }
+        }
+
+        public Ogro RetornaOgroPorId(int id)
+        {
+            return _repository.RetornaOgroPorId(id);
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using GameApi.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 
 namespace GameApi.Data.Context
 {
@@ -32,6 +34,11 @@ namespace GameApi.Data.Context
                 .HasOne(playerEquipamentos => playerEquipamentos.Equipamento)
                 .WithMany(equipamento => equipamento.PlayerEquipamentos)
                 .HasForeignKey(playerEquipamentos => playerEquipamentos.EquipamentoId);
+        }
+
+        internal List<object> ToList()
+        {
+            throw new NotImplementedException();
         }
     }
 }
