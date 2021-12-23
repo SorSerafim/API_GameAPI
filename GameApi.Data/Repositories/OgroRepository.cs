@@ -1,9 +1,6 @@
-﻿using AutoMapper;
-using GameApi.Data.Context;
+﻿using GameApi.Data.Context;
 using GameApi.Domain.Interfaces;
 using GameApi.Domain.Models;
-using GameApi.Shared.Dtos.Create;
-using GameApi.Shared.Dtos.Read;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,26 +26,21 @@ namespace GameApi.Data.Repositories
             return _context.Ogros.ToList();
         }
 
-        public void AtualizaOgro(int id, Ogro novoOgro)
+        public void AtualizaOgro(Ogro novoOgro)
         {
-            Ogro ogro = _context.Ogros.FirstOrDefault(x => x.Id == id);
-            if (ogro != null)
-            {
-                ogro.Vida = novoOgro.Vida;
-                ogro.Defesa = novoOgro.Defesa;
-                ogro.Dano = novoOgro.Dano;
-                _context.SaveChanges();
-            }
+            _context.Update(novoOgro);
+            _context.SaveChanges();
         }
 
-        public void DeletaOgro(int id)
+        public void DeletaOgro(Ogro ogro)
         {
-            Ogro ogro = _context.Ogros.FirstOrDefault(x => x.Id == id);
-            if(ogro != null)
-            {
-                _context.Ogros.Remove(ogro);
-                _context.SaveChanges();
-            }
+            _context.Remove(ogro);
+            _context.SaveChanges();
+        }
+
+        public Ogro RetornaOgroPorId(int id)
+        {
+            return _context.Ogros.FirstOrDefault(x => x.Id == id);
         }
     }
 }

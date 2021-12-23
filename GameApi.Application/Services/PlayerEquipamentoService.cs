@@ -1,6 +1,8 @@
 ﻿using GameApi.Domain.Interfaces;
 using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
+using GameApi.Shared.Dtos.Read;
+using System.Collections.Generic;
 
 namespace GameApi.Application.Services
 {
@@ -28,6 +30,26 @@ namespace GameApi.Application.Services
                 playerEquipamentos.EquipamentoId = playerEquipamentoDto.EquipamentoId;
                 _IPlayerEquipamentoRepository.AdicionaPlayerEquipamento(playerEquipamentos);
             }
+        }
+
+        public List<PlayerEquipamentos> RetornaTodosOsPlayerEquipamentos()
+        {
+            List<PlayerEquipamentos> listaPlayerEquipamentos = _IPlayerEquipamentoRepository.RetornaTodosOsPlayerEquipamentos();
+            return listaPlayerEquipamentos;
+        }
+
+        public void DeletaPlayerEquipamento(int id)
+        {
+            PlayerEquipamentos playerEquipamentos = _IPlayerEquipamentoRepository.RetornaPlayerEquipamentoPorId(id);
+            if (playerEquipamentos != null)
+            {
+                _IPlayerEquipamentoRepository.DeletaPlayerEquipamento(playerEquipamentos);
+            }
+        }
+
+        public PlayerEquipamentos RetornaPlayerEquipamentoPorId(int id)
+        {
+            return _IPlayerEquipamentoRepository.RetornaPlayerEquipamentoPorId(id);
         }
     }
 }

@@ -7,10 +7,10 @@ namespace GameApi.Domain.Interfaces
 {
     public interface IEquipamentoRepository
     {
-        public Equipamento RetornaEquipamentoPorId(int id);
-        public void AdicionaEquipamento(Equipamento equipamento);
-        public List<Equipamento> RetornaTodosOsEquipamentos();
-        public void AtualizaEquipamento(int id, Equipamento novoEquipamento);
-        public void DeletaEquipamento(int id);
+        Equipamento RetornaEquipamentoPorId(int id);
+        void AdicionaEquipamento(Equipamento equipamento);
+        List<Equipamento> RetornaTodosOsEquipamentos();
+        void AtualizaEquipamento(Equipamento novoEquipamento);
+        void DeletaEquipamento(Equipamento equipamento);
     }
 }

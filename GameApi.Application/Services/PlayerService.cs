@@ -36,5 +36,31 @@ namespace GameApi.Application.Services
             }
             return playerDtos;
         }
+
+        public void AtualizaPlayer(int id, CreatePlayerDto playerDto)
+        {
+            Player player = _repository.RetornaPlayerPorId(id);
+            if(player != null)
+            {
+                player.Nome = playerDto.Nome;
+                player.Vida = playerDto.Vida;
+                player.Level = playerDto.Level;
+                _repository.AtualizaPlayer(player);
+            }
+        }
+
+        public void DeletaPlayer(int id)
+        {
+            Player player = _repository.RetornaPlayerPorId(id);
+            if( player != null)
+            {
+                _repository.DeletaPlayer(player);
+            }
+        }
+
+        public Player RetornaPlayerPorId(int id)
+        {
+            return _repository.RetornaPlayerPorId(id);
+        }
     }
 }
