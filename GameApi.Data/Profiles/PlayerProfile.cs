@@ -10,8 +10,8 @@ namespace GameApi.Data.Profiles
     {
         public PlayerProfile()
         {
-            CreateMap<Player, ReadPlayerDto>().ForMember(dest => dest.Equipamentos,opt => opt.MapFrom(x => x.PlayerEquipamentos.Select(y => y.Equipamento)));
             CreateMap<CreatePlayerDto, Player>();
+            CreateMap<Player, ReadPlayerDto>().ForMember(dest => dest.Equipamentos,opt => opt.MapFrom(x => x.PlayerEquipamentos.Select(y => y.Equipamento)));
         }
     }
 }

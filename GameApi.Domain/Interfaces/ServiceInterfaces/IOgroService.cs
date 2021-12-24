@@ -10,7 +10,7 @@ namespace GameApi.Domain.Interfaces.ServiceInterfaces
         Ogro RetornaOgroPorId(int id);
         List<ReadOgroDto> RetornaTodosOsOgros();
         void AdicionaOgro(CreateOgroDto ogroDto);
-        void AtualizaOgro(int id, Ogro novoOgro);
+        void AtualizaOgro(int id, CreateOgroDto ogroDto);
         void DeletaOgro(int id);
     }
 }

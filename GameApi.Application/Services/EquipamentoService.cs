@@ -43,6 +43,7 @@ namespace GameApi.Application.Services
             Equipamento equipamento = _repository.RetornaEquipamentoPorId(id);
             if(equipamento != null)
             {
+                equipamento.Id = id;
                 equipamento.Nome = equipamentoDto.Nome;
                 equipamento.Dano = equipamentoDto.Dano;
                 equipamento.Level = equipamentoDto.Level;

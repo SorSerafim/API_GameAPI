@@ -9,8 +9,8 @@ namespace GameApi.Data.Profiles
     {
         public EquipamentoProfile()
         {
-            CreateMap<Equipamento, ReadEquipamentoDto>();
             CreateMap<CreateEquipamentoDto, Equipamento>();
+            CreateMap<Equipamento, ReadEquipamentoDto>();
         }
     }
 }

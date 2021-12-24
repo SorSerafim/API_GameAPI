@@ -1,5 +1,4 @@
 ﻿using GameApi.Domain.Interfaces.ServiceInterfaces;
-using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
 using Microsoft.AspNetCore.Mvc;
@@ -38,9 +37,9 @@ namespace GameApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult AtualizaPorId(int id, Ogro novoOgro)
+        public IActionResult AtualizaPorId(int id, CreateOgroDto ogroDto)
         {
-            _service.AtualizaOgro(id, novoOgro);
+            _service.AtualizaOgro(id, ogroDto);
             return Ok();
         }
     }

@@ -20,7 +20,7 @@ namespace GameApi.Data.Repositories
 
         public void Atualiza(T newEntity)
         {
-            _context.Update(newEntity);
+            _context.Set<T>().Update(newEntity);
             _context.SaveChanges();
         }
 

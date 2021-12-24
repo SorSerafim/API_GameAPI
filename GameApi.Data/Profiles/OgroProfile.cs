@@ -9,8 +9,8 @@ namespace GameApi.Data.Profiles
     {
         public OgroProfile()
         {
-            CreateMap<Ogro, ReadOgroDto>();
             CreateMap<CreateOgroDto, Ogro>();
+            CreateMap<Ogro, ReadOgroDto>();
         }
     }
 }

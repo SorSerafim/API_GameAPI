@@ -38,14 +38,15 @@ namespace GameApi.Application.Services
             return ogrosDtos;
         }
 
-        public void AtualizaOgro(int id, Ogro novoOgro)
+        public void AtualizaOgro(int id, CreateOgroDto ogroDto)
         {
             Ogro ogro = _repository.RetornaOgroPorId(id);
             if(ogro != null)
             {
-                ogro.Vida = novoOgro.Vida;
-                ogro.Defesa = novoOgro.Defesa;
-                ogro.Dano = novoOgro.Dano;
+                ogro.Id = id;
+                ogro.Vida = ogroDto.Vida;
+                ogro.Defesa = ogroDto.Defesa;
+                ogro.Dano = ogroDto.Dano;
                 _repository.Atualiza(ogro);
             }
         }
