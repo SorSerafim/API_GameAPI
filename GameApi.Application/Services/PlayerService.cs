@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GameApi.Domain.Interfaces;
+using GameApi.Domain.Interfaces.ServiceInterfaces;
 using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
@@ -7,7 +8,7 @@ using System.Collections.Generic;
 
 namespace GameApi.Application.Services
 {
-    public class PlayerService
+    public class PlayerService : IPlayerService
     {
         private IPlayerRepository _repository;
         private IMapper _mapper;
@@ -21,7 +22,7 @@ namespace GameApi.Application.Services
         public void AdicionaPlayer(CreatePlayerDto playerDto)
         {
             Player player = _mapper.Map<Player>(playerDto);
-            _repository.AdicionaPlayer(player);
+            _repository.Adiciona(player);
         }
 
         public List<ReadPlayerDto> RetornaTodosOsPlayers()
@@ -45,7 +46,7 @@ namespace GameApi.Application.Services
                 player.Nome = playerDto.Nome;
                 player.Vida = playerDto.Vida;
                 player.Level = playerDto.Level;
-                _repository.AtualizaPlayer(player);
+                _repository.Atualiza(player);
             }
         }
 
@@ -54,7 +55,7 @@ namespace GameApi.Application.Services
             Player player = _repository.RetornaPlayerPorId(id);
             if( player != null)
             {
-                _repository.DeletaPlayer(player);
+                _repository.Deleta(player);
             }
         }
 

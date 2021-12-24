@@ -1,4 +1,4 @@
-﻿using GameApi.Application.Services;
+﻿using GameApi.Domain.Interfaces.ServiceInterfaces;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +10,9 @@ namespace GameApi.Controllers
     [ApiController]
     public class PlayerController : ControllerBase
     {
-        private PlayerService _service;
+        private IPlayerService _service;
 
-        public PlayerController(PlayerService service)
+        public PlayerController(IPlayerService service)
         {
             _service = service;
         }

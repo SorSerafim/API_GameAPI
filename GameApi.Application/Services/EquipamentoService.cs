@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GameApi.Domain.Interfaces;
+using GameApi.Domain.Interfaces.ServiceInterfaces;
 using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
@@ -7,7 +8,7 @@ using System.Collections.Generic;
 
 namespace GameApi.Application.Services
 {
-    public class EquipamentoService
+    public class EquipamentoService : IEquipamentoService
     {
         private IEquipamentoRepository _repository;
         private IMapper _mapper;
@@ -21,7 +22,7 @@ namespace GameApi.Application.Services
         public void AdicionaEquipamento(CreateEquipamentoDto equipamentoDto)
         {
             Equipamento equipamento = _mapper.Map<Equipamento>(equipamentoDto);
-            _repository.AdicionaEquipamento(equipamento);
+            _repository.Adiciona(equipamento);
         }
 
         public List<ReadEquipamentoDto> RetornaTodosOsEquipamentos()
@@ -45,7 +46,7 @@ namespace GameApi.Application.Services
                 equipamento.Nome = equipamentoDto.Nome;
                 equipamento.Dano = equipamentoDto.Dano;
                 equipamento.Level = equipamentoDto.Level;
-                _repository.AtualizaEquipamento(equipamento);
+                _repository.Atualiza(equipamento);
             }
         }
 
@@ -54,7 +55,7 @@ namespace GameApi.Application.Services
             Equipamento equipamento = _repository.RetornaEquipamentoPorId(id);
             if( equipamento != null)
             {
-                _repository.DeletaEquipamento(equipamento);
+                _repository.Deleta(equipamento);
             }
         }
 

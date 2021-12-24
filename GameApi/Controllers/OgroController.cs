@@ -1,4 +1,4 @@
-﻿using GameApi.Application.Services;
+﻿using GameApi.Domain.Interfaces.ServiceInterfaces;
 using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
@@ -11,9 +11,9 @@ namespace GameApi.Controllers
     [ApiController]
     public class OgroController : ControllerBase
     {
-        private OgroService _service;
+        private IOgroService _service;
 
-        public OgroController(OgroService service)
+        public OgroController(IOgroService service)
         {
             _service = service;
         }

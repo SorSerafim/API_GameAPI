@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GameApi.Domain.Interfaces;
+using GameApi.Domain.Interfaces.ServiceInterfaces;
 using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
@@ -7,7 +8,7 @@ using System.Collections.Generic;
 
 namespace GameApi.Application.Services
 {
-    public class OgroService
+    public class OgroService : IOgroService
     {
         private IOgroRepository _repository;
         private IMapper _mapper;
@@ -21,7 +22,7 @@ namespace GameApi.Application.Services
         public void AdicionaOgro(CreateOgroDto ogroDto)
         {
             Ogro ogro = _mapper.Map<Ogro>(ogroDto);
-            _repository.AdicionaOgro(ogro);
+            _repository.Adiciona(ogro);
         }
 
         public List<ReadOgroDto> RetornaTodosOsOgros()
@@ -45,7 +46,7 @@ namespace GameApi.Application.Services
                 ogro.Vida = novoOgro.Vida;
                 ogro.Defesa = novoOgro.Defesa;
                 ogro.Dano = novoOgro.Dano;
-                _repository.AtualizaOgro(ogro);
+                _repository.Atualiza(ogro);
             }
         }
 
@@ -54,7 +55,7 @@ namespace GameApi.Application.Services
             Ogro ogro = _repository.RetornaOgroPorId(id);
             if(ogro != null)
             {
-                _repository.DeletaOgro(ogro);
+                _repository.Deleta(ogro);
             }
         }
 

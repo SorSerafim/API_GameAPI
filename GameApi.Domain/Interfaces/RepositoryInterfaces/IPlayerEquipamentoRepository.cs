@@ -3,11 +3,9 @@ using System.Collections.Generic;
 
 namespace GameApi.Domain.Interfaces
 {
-    public interface IPlayerEquipamentoRepository
+    public interface IPlayerEquipamentoRepository : IRepository<PlayerEquipamentos>
     {
         PlayerEquipamentos RetornaPlayerEquipamentoPorId(int id);
-        void AdicionaPlayerEquipamento(PlayerEquipamentos playerEquipamentos);
         List<PlayerEquipamentos> RetornaTodosOsPlayerEquipamentos();
-        void DeletaPlayerEquipamento(PlayerEquipamentos playerEquipamentos);
     }
 }
