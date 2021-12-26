@@ -1,20 +1,14 @@
 ﻿using GameApi.Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 
 namespace GameApi.Data.Context
 {
     public class GameApiContext : DbContext
     {
         public DbSet<Ogro> Ogros { get; set; }
-
         public DbSet<Player> Players { get; set; }
-
         public DbSet<Equipamento> Equipamentos { get; set; }
-
         public DbSet<PlayerEquipamentos> PlayerEquipamentos { get; set; }
-
         public GameApiContext(DbContextOptions<GameApiContext> options) : base(options)
         {
 
@@ -36,9 +30,9 @@ namespace GameApi.Data.Context
                 .HasForeignKey(playerEquipamentos => playerEquipamentos.EquipamentoId);
         }
 
-        internal List<object> ToList()
-        {
-            throw new NotImplementedException();
-        }
+        //internal List<object> ToList()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
