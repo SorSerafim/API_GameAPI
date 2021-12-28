@@ -14,7 +14,7 @@ namespace GameApi.Controllers
         {
             _service = service;
         }
-
+        
         [HttpPost]
         public IActionResult AdicionaEquipamentoAosPlayers(CreatePlayerEquipamentoDto playerEquipamentoDto)
         {
