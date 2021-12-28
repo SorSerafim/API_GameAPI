@@ -1,13 +1,13 @@
-﻿using GameApi.Domain.Models;
-using GameApi.Shared.Dtos.Create;
+﻿using GameApi.Shared.Dtos.Create;
+using GameApi.Shared.Dtos.Read;
 using System.Collections.Generic;
 
 namespace GameApi.Domain.Interfaces.ServiceInterfaces
 {
     public interface IPlayerEquipamentoService
     {
-        PlayerEquipamentos RetornaPlayerEquipamentoPorId(int id);
-        List<PlayerEquipamentos> RetornaTodosOsPlayerEquipamentos();
+        ReadPlayerEquipamentoDto RetornaPlayerEquipamentoPorId(int id);
+        List<ReadPlayerEquipamentoDto> RetornaTodosOsPlayerEquipamentos();
         void AdicionaPlayerEquipamento(CreatePlayerEquipamentoDto playerEquipamentoDto);
         void DeletaPlayerEquipamento(int id);
     }

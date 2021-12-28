@@ -27,7 +27,7 @@ namespace GameApi.Application.Services
 
         public List<ReadEquipamentoDto> RetornaTodosOsEquipamentos()
         {
-            List<Equipamento> equipamentos = _repository.RetornaTodosOsEquipamentos();
+            List<Equipamento> equipamentos = _repository.RetornaTodos();
             List<ReadEquipamentoDto> equipamentosDtos = new List<ReadEquipamentoDto>();
             foreach (Equipamento equipamento in equipamentos)
             {
@@ -40,7 +40,7 @@ namespace GameApi.Application.Services
 
         public void AtualizaEquipamento(int id, CreateEquipamentoDto equipamentoDto)
         {
-            Equipamento equipamento = _repository.RetornaEquipamentoPorId(id);
+            Equipamento equipamento = _repository.Retorna(id);
             if(equipamento != null)
             {
                 equipamento.Id = id;
@@ -53,7 +53,7 @@ namespace GameApi.Application.Services
 
         public void DeletaEquipamento(int id)
         {
-            Equipamento equipamento = _repository.RetornaEquipamentoPorId(id);
+            Equipamento equipamento = _repository.Retorna(id);
             if( equipamento != null)
             {
                 _repository.Deleta(equipamento);
@@ -62,7 +62,7 @@ namespace GameApi.Application.Services
 
         public ReadEquipamentoDto RetornaEquipamentoPorId(int id)
         {
-            Equipamento equipamento = _repository.RetornaEquipamentoPorId(id);
+            Equipamento equipamento = _repository.Retorna(id);
             if(equipamento != null)
             {
                 ReadEquipamentoDto equipamentoDto = _mapper.Map<ReadEquipamentoDto>(equipamento);

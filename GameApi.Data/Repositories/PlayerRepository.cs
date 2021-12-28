@@ -16,14 +16,9 @@ namespace GameApi.Data.Repositories
             _context = context;
         }
 
-        public List<Player> RetornaTodosOsPlayers()
+        public override List<Player> RetornaTodos()
         {
             return _context.Players.Include(x => x.PlayerEquipamentos).ThenInclude(x => x.Equipamento).ToList();
-        }
-
-        public Player RetornaPlayerPorId(int id)
-        {
-            return _context.Players.FirstOrDefault(x => x.Id == id);
         }
     }
 }

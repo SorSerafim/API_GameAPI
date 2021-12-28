@@ -27,7 +27,7 @@ namespace GameApi.Application.Services
 
         public List<ReadOgroDto> RetornaTodosOsOgros()
         {
-            List<Ogro> ogros = _repository.RetornaTodosOsOgros();
+            List<Ogro> ogros = _repository.RetornaTodos();
             List<ReadOgroDto> ogrosDtos = new List<ReadOgroDto>();
             foreach (Ogro ogro in ogros)
             {
@@ -40,7 +40,7 @@ namespace GameApi.Application.Services
 
         public void AtualizaOgro(int id, CreateOgroDto ogroDto)
         {
-            Ogro ogro = _repository.RetornaOgroPorId(id);
+            Ogro ogro = _repository.Retorna(id);
             if(ogro != null)
             {
                 ogro.Id = id;
@@ -53,7 +53,7 @@ namespace GameApi.Application.Services
 
         public void DeletaOgro(int id)
         {
-            Ogro ogro = _repository.RetornaOgroPorId(id);
+            Ogro ogro = _repository.Retorna(id);
             if(ogro != null)
             {
                 _repository.Deleta(ogro);
@@ -62,7 +62,7 @@ namespace GameApi.Application.Services
 
         public ReadOgroDto RetornaOgroPorId(int id)
         {
-            Ogro ogro = _repository.RetornaOgroPorId(id);
+            Ogro ogro = _repository.Retorna(id);
             if (ogro != null)
             {
                 ReadOgroDto ogroDto = _mapper.Map<ReadOgroDto>(ogro);

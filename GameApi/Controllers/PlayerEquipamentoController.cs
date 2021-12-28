@@ -1,6 +1,8 @@
 ﻿using GameApi.Domain.Interfaces.ServiceInterfaces;
 using GameApi.Shared.Dtos.Create;
+using GameApi.Shared.Dtos.Read;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace GameApi.Controllers
 {
@@ -25,7 +27,9 @@ namespace GameApi.Controllers
         [HttpGet]
         public IActionResult RetornaTodos()
         {
-            return Ok(_service.RetornaTodosOsPlayerEquipamentos());
+            List<ReadPlayerEquipamentoDto> listDto = _service.RetornaTodosOsPlayerEquipamentos();
+            if(listDto != null) return Ok(listDto);
+            return NotFound();
         }
 
         [HttpDelete("{id}")]

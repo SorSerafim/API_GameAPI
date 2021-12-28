@@ -1,6 +1,8 @@
 ﻿using GameApi.Domain.Interfaces.ServiceInterfaces;
 using GameApi.Shared.Dtos.Create;
+using GameApi.Shared.Dtos.Read;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace GameApi.Controllers
 {
@@ -25,13 +27,17 @@ namespace GameApi.Controllers
         [HttpGet]
         public IActionResult RetornaTodos()
         {
-            return Ok(_service.RetornaTodosOsPlayers());
+            List<ReadPlayerDto> listDto = _service.RetornaTodosOsPlayers();
+            if(listDto != null) return Ok(listDto);
+            return NotFound();
         }
 
         [HttpGet("{id}")]
         public IActionResult RetornaPorId(int id)
         {
-            return Ok(_service.RetornaPlayerPorId(id));
+            ReadPlayerDto playerDto = _service.RetornaPlayerPorId(id);
+            if(playerDto != null) return Ok(playerDto);
+            return NotFound();
         }
 
         [HttpDelete("{id}")]
