@@ -60,9 +60,16 @@ namespace GameApi.Application.Services
             }
         }
 
-        public Equipamento RetornaEquipamentoPorId(int id)
+        public ReadEquipamentoDto RetornaEquipamentoPorId(int id)
         {
-            return _repository.RetornaEquipamentoPorId(id);
+            Equipamento equipamento = _repository.RetornaEquipamentoPorId(id);
+            if(equipamento != null)
+            {
+                ReadEquipamentoDto equipamentoDto = _mapper.Map<ReadEquipamentoDto>(equipamento);
+                return equipamentoDto;
+            }
+            else
+                return null;
         }
     }
 }

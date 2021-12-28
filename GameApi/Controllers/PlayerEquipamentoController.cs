@@ -17,16 +17,16 @@ namespace GameApi.Controllers
             _service = service;
         }
 
-        [HttpGet]
-        public List<PlayerEquipamentos> RetornaTodos()
-        {
-            return _service.RetornaTodosOsPlayerEquipamentos();
-        }
-
         [HttpPost]
         public void AdicionaEquipamentoAosPlayers(CreatePlayerEquipamentoDto playerEquipamentoDto)
         {
             _service.AdicionaPlayerEquipamento(playerEquipamentoDto);
+        }
+
+        [HttpGet]
+        public List<PlayerEquipamentos> RetornaTodos()
+        {
+            return _service.RetornaTodosOsPlayerEquipamentos();
         }
 
         [HttpDelete("{id}")]

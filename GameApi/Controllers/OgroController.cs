@@ -1,8 +1,6 @@
 ﻿using GameApi.Domain.Interfaces.ServiceInterfaces;
 using GameApi.Shared.Dtos.Create;
-using GameApi.Shared.Dtos.Read;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace GameApi.Controllers
 {
@@ -17,16 +15,17 @@ namespace GameApi.Controllers
             _service = service;
         }
 
-        [HttpGet]
-        public List<ReadOgroDto> RetornaTodos()
-        {
-            return _service.RetornaTodosOsOgros();
-        }
-
         [HttpPost]
-        public void Adicionar(CreateOgroDto ogroDto)
+        public IActionResult Adicionar(CreateOgroDto ogroDto)
         {
             _service.AdicionaOgro(ogroDto);
+            return Ok();
+        }
+
+        [HttpGet]
+        public IActionResult RetornaTodos()
+        {
+            return Ok(_service.RetornaTodosOsOgros());
         }
 
         [HttpDelete("{id}")]

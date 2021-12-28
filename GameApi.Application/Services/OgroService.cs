@@ -60,9 +60,16 @@ namespace GameApi.Application.Services
             }
         }
 
-        public Ogro RetornaOgroPorId(int id)
+        public ReadOgroDto RetornaOgroPorId(int id)
         {
-            return _repository.RetornaOgroPorId(id);
+            Ogro ogro = _repository.RetornaOgroPorId(id);
+            if (ogro != null)
+            {
+                ReadOgroDto ogroDto = _mapper.Map<ReadOgroDto>(ogro);
+                return ogroDto;
+            }
+            else
+                return null;
         }
     }
 }

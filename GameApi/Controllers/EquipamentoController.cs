@@ -1,8 +1,6 @@
 ﻿using GameApi.Domain.Interfaces.ServiceInterfaces;
 using GameApi.Shared.Dtos.Create;
-using GameApi.Shared.Dtos.Read;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace GameApi.Controllers
 {
@@ -17,16 +15,23 @@ namespace GameApi.Controllers
             _service = service;
         }
 
-        [HttpGet]
-        public List<ReadEquipamentoDto> RetornaTodos()
-        {
-            return _service.RetornaTodosOsEquipamentos();
-        }
-
         [HttpPost]
-        public void Adicionar(CreateEquipamentoDto equipamento)
+        public IActionResult Adicionar(CreateEquipamentoDto equipamento)
         {
             _service.AdicionaEquipamento(equipamento);
+            return Ok();
+        }
+
+        [HttpGet]
+        public IActionResult RetornaTodos()
+        {
+            return Ok(_service.RetornaTodosOsEquipamentos());
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult RetornaPorId(int id)
+        {
+            return Ok(_service.RetornaEquipamentoPorId(id));
         }
 
         [HttpDelete("{id}")]

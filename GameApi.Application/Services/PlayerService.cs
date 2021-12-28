@@ -43,7 +43,9 @@ namespace GameApi.Application.Services
             Player player = _repository.RetornaPlayerPorId(id);
             if(player != null)
             {
-                player = _mapper.Map<Player>(playerDto);
+                player.Nome = playerDto.Nome;
+                player.Vida = playerDto.Vida;
+                player.Level = playerDto.Level;
                 _repository.Atualiza(player);
             }
         }
@@ -57,9 +59,16 @@ namespace GameApi.Application.Services
             }
         }
 
-        public Player RetornaPlayerPorId(int id)
+        public ReadPlayerDto RetornaPlayerPorId(int id)
         {
-            return _repository.RetornaPlayerPorId(id);
+            Player player = _repository.RetornaPlayerPorId(id);
+            if(player != null)
+            {
+                ReadPlayerDto playerDto = _mapper.Map<ReadPlayerDto>(player);
+                return playerDto;
+            }
+            else
+                return null;
         }
     }
 }
