@@ -1,8 +1,6 @@
 ﻿using GameApi.Domain.Interfaces.ServiceInterfaces;
-using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace GameApi.Controllers
 {
@@ -18,15 +16,16 @@ namespace GameApi.Controllers
         }
 
         [HttpPost]
-        public void AdicionaEquipamentoAosPlayers(CreatePlayerEquipamentoDto playerEquipamentoDto)
+        public IActionResult AdicionaEquipamentoAosPlayers(CreatePlayerEquipamentoDto playerEquipamentoDto)
         {
             _service.AdicionaPlayerEquipamento(playerEquipamentoDto);
+            return Ok();
         }
 
         [HttpGet]
-        public List<PlayerEquipamentos> RetornaTodos()
+        public IActionResult RetornaTodos()
         {
-            return _service.RetornaTodosOsPlayerEquipamentos();
+            return Ok(_service.RetornaTodosOsPlayerEquipamentos());
         }
 
         [HttpDelete("{id}")]
