@@ -45,13 +45,13 @@ namespace GameApi.Application.Services
         public void DeletaEquipamento(int id)
         {
             Equipamento equipamento = _repository.Retorna(id);
-            if( equipamento != null) { _repository.Deleta(equipamento); }
+            if( equipamento != null) _repository.Deleta(equipamento);
         }
 
         public ReadEquipamentoDto RetornaEquipamentoPorId(int id)
         {
             Equipamento equipamento = _repository.Retorna(id);
-            if(equipamento != null) { return _mapper.Map<ReadEquipamentoDto>(equipamento); }
+            if (equipamento != null) return _mapper.Map<ReadEquipamentoDto>(equipamento);
             return null;
         }
     }

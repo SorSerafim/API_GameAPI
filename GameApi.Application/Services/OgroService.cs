@@ -45,13 +45,13 @@ namespace GameApi.Application.Services
         public void DeletaOgro(int id)
         {
             Ogro ogro = _repository.Retorna(id);
-            if(ogro != null) { _repository.Deleta(ogro); }
+            if(ogro != null) _repository.Deleta(ogro);
         }
 
         public ReadOgroDto RetornaOgroPorId(int id)
         {
             Ogro ogro = _repository.Retorna(id);
-            if (ogro != null) { return _mapper.Map<ReadOgroDto>(ogro); }
+            if (ogro != null) return _mapper.Map<ReadOgroDto>(ogro);
             return null;
         }
     }

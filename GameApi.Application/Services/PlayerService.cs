@@ -44,13 +44,13 @@ namespace GameApi.Application.Services
         public void DeletaPlayer(int id)
         {
             Player player = _repository.Retorna(id);
-            if( player != null) { _repository.Deleta(player); }
+            if( player != null) _repository.Deleta(player);
         }
 
         public ReadPlayerDto RetornaPlayerPorId(int id)
         {
             Player player = _repository.Retorna(id);
-            if(player != null) { return _mapper.Map<ReadPlayerDto>(player); }
+            if(player != null) return _mapper.Map<ReadPlayerDto>(player);
             return null;
         }
     }
