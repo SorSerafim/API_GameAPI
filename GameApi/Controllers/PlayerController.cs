@@ -14,7 +14,7 @@ namespace GameApi.Controllers
 
         public PlayerController(IPlayerService service)
         {
-            _service = service;
+             _service = service;
         }
 
         [HttpPost]
@@ -29,7 +29,7 @@ namespace GameApi.Controllers
         {
             List<ReadPlayerDto> listDto = _service.RetornaTodosOsPlayers();
             if(listDto != null) return Ok(listDto);
-            return NotFound();
+            return NoContent();
         }
 
         [HttpGet("{id}")]
@@ -37,7 +37,7 @@ namespace GameApi.Controllers
         {
             ReadPlayerDto playerDto = _service.RetornaPlayerPorId(id);
             if(playerDto != null) return Ok(playerDto);
-            return NotFound();
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
