@@ -25,49 +25,27 @@ namespace GameApi.Application.Services
 
         public void AdicionaPlayerEquipamento(CreatePlayerEquipamentoDto playerEquipamentoDto)
         {
-            var playerID = _IPlayerRepository.Retorna(playerEquipamentoDto.PlayerId);
-            var equipamentoID = _IEquipamentoRepository.Retorna(playerEquipamentoDto.EquipamentoId);
-            PlayerEquipamentos playerEquipamentos = new PlayerEquipamentos();
-            if (playerID != null && equipamentoID != null)
+            if (_IPlayerRepository.Retorna(playerEquipamentoDto.PlayerId) != null && _IEquipamentoRepository.Retorna(playerEquipamentoDto.EquipamentoId) != null)
             {
-                playerEquipamentos.PlayerId = playerEquipamentoDto.PlayerId;
-                playerEquipamentos.EquipamentoId = playerEquipamentoDto.EquipamentoId;
-                _IPlayerEquipamentoRepository.Adiciona(playerEquipamentos);
+                _IPlayerEquipamentoRepository.Adiciona(_mapper.Map<PlayerEquipamentos>(playerEquipamentoDto));
             }
         }
 
         public List<ReadPlayerEquipamentoDto> RetornaTodosOsPlayerEquipamentos()
         {
-            List<PlayerEquipamentos> list = _IPlayerEquipamentoRepository.RetornaTodos();
-            List<ReadPlayerEquipamentoDto> listDto = new List<ReadPlayerEquipamentoDto>();
-            foreach (PlayerEquipamentos playerEquipamentos in list)
-            {
-                ReadPlayerEquipamentoDto playerEquipamentoDto = new ReadPlayerEquipamentoDto();
-                playerEquipamentoDto.Id = playerEquipamentos.Id;
-                playerEquipamentoDto.PlayerId = playerEquipamentos.PlayerId;
-                playerEquipamentoDto.EquipamentoId = playerEquipamentos.EquipamentoId;
-                listDto.Add(playerEquipamentoDto);
-            }
-            return listDto;
+            return _mapper.Map<List<ReadPlayerEquipamentoDto>>(_IPlayerEquipamentoRepository.RetornaTodos());
         }
 
         public void DeletaPlayerEquipamento(int id)
         {
             PlayerEquipamentos playerEquipamentos = _IPlayerEquipamentoRepository.Retorna(id);
-            if (playerEquipamentos != null)
-            {
-                _IPlayerEquipamentoRepository.Deleta(playerEquipamentos);
-            }
+            if (playerEquipamentos != null) { _IPlayerEquipamentoRepository.Deleta(playerEquipamentos); }
         }
 
         public ReadPlayerEquipamentoDto RetornaPlayerEquipamentoPorId(int id)
         {
             PlayerEquipamentos playerEquipamentos = _IPlayerEquipamentoRepository.Retorna(id);
-            if (playerEquipamentos != null)
-            {
-                ReadPlayerEquipamentoDto playerEquipamentoDto = _mapper.Map<ReadPlayerEquipamentoDto>(playerEquipamentos);
-                return playerEquipamentoDto;
-            }
+            if (playerEquipamentos != null) { return _mapper.Map<ReadPlayerEquipamentoDto>(playerEquipamentos); }
             return null;
         }
     }

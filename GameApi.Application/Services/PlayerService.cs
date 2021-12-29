@@ -21,21 +21,12 @@ namespace GameApi.Application.Services
 
         public void AdicionaPlayer(CreatePlayerDto playerDto)
         {
-            Player player = _mapper.Map<Player>(playerDto);
-            _repository.Adiciona(player);
+            _repository.Adiciona(_mapper.Map<Player>(playerDto));
         }
 
         public List<ReadPlayerDto> RetornaTodosOsPlayers()
         {
-            List<Player> players = _repository.RetornaTodos();
-            List<ReadPlayerDto> playerDtos = new List<ReadPlayerDto>();
-            foreach(Player player in players)
-            {
-                ReadPlayerDto playerDto = new ReadPlayerDto();
-                playerDto = _mapper.Map<ReadPlayerDto>(player);
-                playerDtos.Add(playerDto);
-            }
-            return playerDtos;
+            return _mapper.Map<List<ReadPlayerDto>>(_repository.RetornaTodos());
         }
 
         public void AtualizaPlayer(int id, CreatePlayerDto playerDto)
@@ -53,22 +44,14 @@ namespace GameApi.Application.Services
         public void DeletaPlayer(int id)
         {
             Player player = _repository.Retorna(id);
-            if( player != null)
-            {
-                _repository.Deleta(player);
-            }
+            if( player != null) { _repository.Deleta(player); }
         }
 
         public ReadPlayerDto RetornaPlayerPorId(int id)
         {
             Player player = _repository.Retorna(id);
-            if(player != null)
-            {
-                ReadPlayerDto playerDto = _mapper.Map<ReadPlayerDto>(player);
-                return playerDto;
-            }
-            else
-                return null;
+            if(player != null) { return _mapper.Map<ReadPlayerDto>(player); }
+            return null;
         }
     }
 }

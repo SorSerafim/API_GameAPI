@@ -21,21 +21,12 @@ namespace GameApi.Application.Services
 
         public void AdicionaOgro(CreateOgroDto ogroDto)
         {
-            Ogro ogro = _mapper.Map<Ogro>(ogroDto);
-            _repository.Adiciona(ogro);
+            _repository.Adiciona(_mapper.Map<Ogro>(ogroDto));
         }
 
         public List<ReadOgroDto> RetornaTodosOsOgros()
         {
-            List<Ogro> ogros = _repository.RetornaTodos();
-            List<ReadOgroDto> ogrosDtos = new List<ReadOgroDto>();
-            foreach (Ogro ogro in ogros)
-            {
-                ReadOgroDto ogroDto = new ReadOgroDto();
-                ogroDto = _mapper.Map<ReadOgroDto>(ogro);
-                ogrosDtos.Add(ogroDto);
-            }
-            return ogrosDtos;
+            return _mapper.Map<List<ReadOgroDto>>(_repository.RetornaTodos());
         }
 
         public void AtualizaOgro(int id, CreateOgroDto ogroDto)
@@ -54,22 +45,14 @@ namespace GameApi.Application.Services
         public void DeletaOgro(int id)
         {
             Ogro ogro = _repository.Retorna(id);
-            if(ogro != null)
-            {
-                _repository.Deleta(ogro);
-            }
+            if(ogro != null) { _repository.Deleta(ogro); }
         }
 
         public ReadOgroDto RetornaOgroPorId(int id)
         {
             Ogro ogro = _repository.Retorna(id);
-            if (ogro != null)
-            {
-                ReadOgroDto ogroDto = _mapper.Map<ReadOgroDto>(ogro);
-                return ogroDto;
-            }
-            else
-                return null;
+            if (ogro != null) { return _mapper.Map<ReadOgroDto>(ogro); }
+            return null;
         }
     }
 }

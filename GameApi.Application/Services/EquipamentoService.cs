@@ -21,21 +21,12 @@ namespace GameApi.Application.Services
 
         public void AdicionaEquipamento(CreateEquipamentoDto equipamentoDto)
         {
-            Equipamento equipamento = _mapper.Map<Equipamento>(equipamentoDto);
-            _repository.Adiciona(equipamento);
+            _repository.Adiciona(_mapper.Map<Equipamento>(equipamentoDto));
         }
 
         public List<ReadEquipamentoDto> RetornaTodosOsEquipamentos()
         {
-            List<Equipamento> equipamentos = _repository.RetornaTodos();
-            List<ReadEquipamentoDto> equipamentosDtos = new List<ReadEquipamentoDto>();
-            foreach (Equipamento equipamento in equipamentos)
-            {
-                ReadEquipamentoDto readEquipamentoDto = new ReadEquipamentoDto();
-                readEquipamentoDto = _mapper.Map<ReadEquipamentoDto>(equipamento);
-                equipamentosDtos.Add(readEquipamentoDto);
-            }
-            return equipamentosDtos;
+            return _mapper.Map<List<ReadEquipamentoDto>>(_repository.RetornaTodos());
         }
 
         public void AtualizaEquipamento(int id, CreateEquipamentoDto equipamentoDto)
@@ -54,22 +45,14 @@ namespace GameApi.Application.Services
         public void DeletaEquipamento(int id)
         {
             Equipamento equipamento = _repository.Retorna(id);
-            if( equipamento != null)
-            {
-                _repository.Deleta(equipamento);
-            }
+            if( equipamento != null) { _repository.Deleta(equipamento); }
         }
 
         public ReadEquipamentoDto RetornaEquipamentoPorId(int id)
         {
             Equipamento equipamento = _repository.Retorna(id);
-            if(equipamento != null)
-            {
-                ReadEquipamentoDto equipamentoDto = _mapper.Map<ReadEquipamentoDto>(equipamento);
-                return equipamentoDto;
-            }
-            else
-                return null;
+            if(equipamento != null) { return _mapper.Map<ReadEquipamentoDto>(equipamento); }
+            return null;
         }
     }
 }
