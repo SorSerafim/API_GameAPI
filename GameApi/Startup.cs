@@ -1,8 +1,6 @@
-using GameApi.Application.Services;
+using GameApi.Application.Extensions;
 using GameApi.Data.Context;
-using GameApi.Data.Repositories;
-using GameApi.Domain.Interfaces;
-using GameApi.Domain.Interfaces.ServiceInterfaces;
+using GameApi.Data.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +8,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System.Reflection;
 
 namespace GameApi
 {
@@ -26,16 +23,8 @@ namespace GameApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper(Assembly.GetAssembly(typeof(GameApiContext)));
-            services.AddDbContext<GameApiContext>(x => x.UseSqlServer(Configuration.GetConnectionString("GameConnection")));
-            services.AddTransient<IPlayerRepository, PlayerRepository>();
-            services.AddTransient<IOgroRepository, OgroRepository>();
-            services.AddTransient<IEquipamentoRepository, EquipamentoRepository>();
-            services.AddTransient<IPlayerEquipamentoRepository, PlayerEquipamentoRepository>();
-            services.AddTransient<IPlayerEquipamentoService, PlayerEquipamentoService>();
-            services.AddTransient<IPlayerService, PlayerService>();
-            services.AddTransient<IOgroService, OgroService>();
-            services.AddTransient<IEquipamentoService, EquipamentoService>();
+            services.AddData(Configuration);
+            services.AddAplication();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

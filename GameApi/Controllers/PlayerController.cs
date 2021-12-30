@@ -18,9 +18,9 @@ namespace GameApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Adicionar(CreatePlayerDto playerDto)
+        public IActionResult Adicionar(CreatePlayerDto createDto)
         {
-            _service.AdicionaPlayer(playerDto);
+            _service.AdicionaPlayer(createDto);
             return Ok();
         }
 
@@ -35,23 +35,33 @@ namespace GameApi.Controllers
         [HttpGet("{id}")]
         public IActionResult RetornaPorId(int id)
         {
-            ReadPlayerDto playerDto = _service.RetornaPlayerPorId(id);
-            if(playerDto != null) return Ok(playerDto);
+            ReadPlayerDto readDto = _service.RetornaPlayerPorId(id);
+            if(readDto != null) return Ok(readDto);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeletaPorId(int id)
         {
-            _service.DeletaPlayer(id);
-            return Ok();
+            ReadPlayerDto readDto = _service.RetornaPlayerPorId(id);
+            if (readDto != null)
+            {
+                _service.DeletaPlayer(id);
+                return Ok();
+            }
+            return NoContent();
         }
 
         [HttpPut("{id}")]
-        public IActionResult AtualizaPorId(int id, CreatePlayerDto playerDto)
+        public IActionResult AtualizaPorId(int id, CreatePlayerDto createDto)
         {
-            _service.AtualizaPlayer(id, playerDto);
-            return Ok();
+            ReadPlayerDto readDto = _service.RetornaPlayerPorId(id);
+            if(readDto != null)
+            {
+                _service.AtualizaPlayer(id, createDto);
+                return Ok();
+            }
+            return NoContent();
         }
     }
 }
