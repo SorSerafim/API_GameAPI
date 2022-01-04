@@ -4,6 +4,7 @@ using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GameApi.Controllers
 {
@@ -37,9 +38,17 @@ namespace GameApi.Controllers
         public IActionResult RetornaPorId(int id)
         {
             ReadPlayerDto readDto = _service.RetornaPlayerPorId(id);
-            if(readDto != null) return Ok(readDto);
+            if (readDto != null) return Ok(readDto);
             return NoContent();
         }
+
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> RetornaPorIdAsync(int id)
+        //{
+        //    ReadPlayerDto readDto = await _service.RetornaPlayerPorIdAsync(id);
+        //    if(readDto != null) return Ok(readDto);
+        //    return NoContent();
+        //} 
 
         [HttpDelete("{id}")]
         public IActionResult DeletaPorId(int id)

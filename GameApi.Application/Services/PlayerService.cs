@@ -6,6 +6,7 @@ using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GameApi.Application.Services
 {
@@ -59,6 +60,13 @@ namespace GameApi.Application.Services
         {
             Player player = _repository.Retorna(id);
             if(player != null) return _mapper.Map<ReadPlayerDto>(player);
+            return null;
+        }
+
+        public async Task<ReadPlayerDto> RetornaPlayerPorIdAsync(int id)
+        {
+            Player player = await _repository.PlayerPorIdAsync(id);
+            if (player != null) return _mapper.Map<ReadPlayerDto>(player);
             return null;
         }
     }
