@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentResults;
 using GameApi.Domain.Interfaces;
 using GameApi.Domain.Interfaces.ServiceInterfaces;
 using GameApi.Domain.Models;
@@ -29,7 +30,7 @@ namespace GameApi.Application.Services
             return _mapper.Map<List<ReadEquipamentoDto>>(_repository.RetornaTodos());
         }
 
-        public void AtualizaEquipamento(int id, CreateEquipamentoDto equipamentoDto)
+        public Result AtualizaEquipamento(int id, CreateEquipamentoDto equipamentoDto)
         {
             Equipamento equipamento = _repository.Retorna(id);
             if(equipamento != null)
@@ -39,13 +40,20 @@ namespace GameApi.Application.Services
                 equipamento.Dano = equipamentoDto.Dano;
                 equipamento.Level = equipamentoDto.Level;
                 _repository.Atualiza(equipamento);
+                return Result.Ok();
             }
+            return Result.Fail("Equipamento não encontrado!");
         }
 
-        public void DeletaEquipamento(int id)
+        public Result DeletaEquipamento(int id)
         {
             Equipamento equipamento = _repository.Retorna(id);
-            if( equipamento != null) _repository.Deleta(equipamento);
+            if( equipamento != null)
+            {
+                _repository.Deleta(equipamento);
+                return Result.Ok();
+            }
+            return Result.Fail("Equipamento não encontrado!");
         }
 
         public ReadEquipamentoDto RetornaEquipamentoPorId(int id)

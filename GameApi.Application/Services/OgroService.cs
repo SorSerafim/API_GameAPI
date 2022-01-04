@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentResults;
 using GameApi.Domain.Interfaces;
 using GameApi.Domain.Interfaces.ServiceInterfaces;
 using GameApi.Domain.Models;
@@ -29,7 +30,7 @@ namespace GameApi.Application.Services
             return _mapper.Map<List<ReadOgroDto>>(_repository.RetornaTodos());
         }
 
-        public void AtualizaOgro(int id, CreateOgroDto ogroDto)
+        public Result AtualizaOgro(int id, CreateOgroDto ogroDto)
         {
             Ogro ogro = _repository.Retorna(id);
             if(ogro != null)
@@ -39,13 +40,20 @@ namespace GameApi.Application.Services
                 ogro.Defesa = ogroDto.Defesa;
                 ogro.Dano = ogroDto.Dano;
                 _repository.Atualiza(ogro);
+                return Result.Ok();
             }
+            return Result.Fail("Ogro não encontrado!");
         }
 
-        public void DeletaOgro(int id)
+        public Result DeletaOgro(int id)
         {
             Ogro ogro = _repository.Retorna(id);
-            if(ogro != null) _repository.Deleta(ogro);
+            if(ogro != null)
+            {
+                _repository.Deleta(ogro);
+                return Result.Ok();
+            }
+            return Result.Fail("Ogro não encontrado!");
         }
 
         public ReadOgroDto RetornaOgroPorId(int id)

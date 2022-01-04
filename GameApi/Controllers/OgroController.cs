@@ -1,4 +1,5 @@
-﻿using GameApi.Domain.Interfaces.ServiceInterfaces;
+﻿using FluentResults;
+using GameApi.Domain.Interfaces.ServiceInterfaces;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
 using Microsoft.AspNetCore.Mvc;
@@ -35,15 +36,17 @@ namespace GameApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeletaPorId(int id)
         {
-            _service.DeletaOgro(id);
-            return Ok();
+            Result resultado = _service.DeletaOgro(id);
+            if(resultado.IsFailed) return NotFound();
+            return NoContent();
         }
 
         [HttpPut("{id}")]
         public IActionResult AtualizaPorId(int id, CreateOgroDto ogroDto)
         {
-            _service.AtualizaOgro(id, ogroDto);
-            return Ok();
+            Result resultado = _service.AtualizaOgro(id, ogroDto);
+            if (resultado.IsFailed) return NotFound();
+            return NoContent();
         }
     }
 }

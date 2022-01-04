@@ -1,4 +1,5 @@
-﻿using GameApi.Domain.Interfaces.ServiceInterfaces;
+﻿using FluentResults;
+using GameApi.Domain.Interfaces.ServiceInterfaces;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
 using Microsoft.AspNetCore.Mvc;
@@ -43,15 +44,17 @@ namespace GameApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeletaPorId(int id)
         {
-            _service.DeletaEquipamento(id);
-            return Ok();
+            Result resultado = _service.DeletaEquipamento(id);
+            if(resultado.IsFailed) return NotFound();
+            return NoContent();
         }
 
         [HttpPut("{id}")]
         public IActionResult AtualizaPorId(int id, CreateEquipamentoDto equipamentoDto)
         {
-            _service.AtualizaEquipamento(id, equipamentoDto);
-            return Ok();
+            Result resultado = _service.AtualizaEquipamento(id, equipamentoDto);
+            if (resultado.IsFailed) return NotFound();
+            return NoContent();
         }
     }
 }

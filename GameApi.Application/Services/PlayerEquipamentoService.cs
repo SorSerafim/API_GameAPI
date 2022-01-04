@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentResults;
 using GameApi.Domain.Interfaces;
 using GameApi.Domain.Interfaces.ServiceInterfaces;
 using GameApi.Domain.Models;
@@ -36,10 +37,15 @@ namespace GameApi.Application.Services
             return _mapper.Map<List<ReadPlayerEquipamentoDto>>(_repository.RetornaTodos());
         }
 
-        public void DeletaPlayerEquipamento(int id)
+        public Result DeletaPlayerEquipamento(int id)
         {
             PlayerEquipamentos playerEquipamentos = _repository.Retorna(id);
-            if (playerEquipamentos != null) _repository.Deleta(playerEquipamentos);
+            if (playerEquipamentos != null)
+            {
+                _repository.Deleta(playerEquipamentos);
+                return Result.Ok();
+            }
+            return Result.Fail("PlayerEquipamento não encontrado!");
         }
 
         public ReadPlayerEquipamentoDto RetornaPlayerEquipamentoPorId(int id)

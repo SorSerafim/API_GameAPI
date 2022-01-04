@@ -1,4 +1,5 @@
-﻿using GameApi.Shared.Dtos.Create;
+﻿using FluentResults;
+using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
 using System.Collections.Generic;
 
@@ -9,7 +10,7 @@ namespace GameApi.Domain.Interfaces.ServiceInterfaces
         ReadOgroDto RetornaOgroPorId(int id);
         List<ReadOgroDto> RetornaTodosOsOgros();
         void AdicionaOgro(CreateOgroDto ogroDto);
-        void AtualizaOgro(int id, CreateOgroDto ogroDto);
-        void DeletaOgro(int id);
+        Result AtualizaOgro(int id, CreateOgroDto ogroDto);
+        Result DeletaOgro(int id);
     }
 }

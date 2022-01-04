@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentResults;
 using GameApi.Domain.Interfaces;
 using GameApi.Domain.Interfaces.ServiceInterfaces;
 using GameApi.Domain.Models;
@@ -29,7 +30,7 @@ namespace GameApi.Application.Services
             return _mapper.Map<List<ReadPlayerDto>>(_repository.RetornaTodos());
         }
 
-        public void AtualizaPlayer(int id, CreatePlayerDto playerDto)
+        public Result AtualizaPlayer(int id, CreatePlayerDto playerDto)
         {
             Player player = _repository.Retorna(id);
             if(player != null)
@@ -38,13 +39,20 @@ namespace GameApi.Application.Services
                 player.Vida = playerDto.Vida;
                 player.Level = playerDto.Level;
                 _repository.Atualiza(player);
+                return Result.Ok();
             }
+            return Result.Fail("Player não encontrado!");
         }
 
-        public void DeletaPlayer(int id)
+        public Result DeletaPlayer(int id)
         {
             Player player = _repository.Retorna(id);
-            if( player != null) _repository.Deleta(player);
+            if( player != null)
+            {
+                _repository.Deleta(player);
+                return Result.Ok();
+            }
+            return Result.Fail("Player não encontrado!");
         }
 
         public ReadPlayerDto RetornaPlayerPorId(int id)
