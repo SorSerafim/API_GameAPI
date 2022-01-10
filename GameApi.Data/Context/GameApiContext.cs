@@ -5,6 +5,7 @@ namespace GameApi.Data.Context
 {
     public class GameApiContext : DbContext
     {
+        public DbSet<User> Users { get; set; }
         public DbSet<Ogro> Ogros { get; set; }
         public DbSet<Player> Players { get; set; }
         public DbSet<Equipamento> Equipamentos { get; set; }
@@ -29,10 +30,5 @@ namespace GameApi.Data.Context
                 .WithMany(equipamento => equipamento.PlayerEquipamentos)
                 .HasForeignKey(playerEquipamentos => playerEquipamentos.EquipamentoId);
         }
-
-        //internal List<object> ToList()
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

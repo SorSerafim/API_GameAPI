@@ -1,13 +1,14 @@
 using GameApi.Application.Extensions;
 using GameApi.Data.Context;
 using GameApi.Data.Extensions;
+using GameApi.Extensions;
+using GameApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 
 namespace GameApi
 {
@@ -23,13 +24,13 @@ namespace GameApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddSingleton<TokenService>();
             services.AddData(Configuration);
             services.AddAplication();
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "GameApi", Version = "v1" });
-            });
+            services.AddJwt(Configuration);
+            services.AddSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

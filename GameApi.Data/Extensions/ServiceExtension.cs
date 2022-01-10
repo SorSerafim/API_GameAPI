@@ -1,6 +1,7 @@
 ﻿using GameApi.Data.Context;
 using GameApi.Data.Repositories;
 using GameApi.Domain.Interfaces;
+using GameApi.Domain.Interfaces.RepositoryInterfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ namespace GameApi.Data.Extensions
             services.AddTransient<IOgroRepository, OgroRepository>();
             services.AddTransient<IEquipamentoRepository, EquipamentoRepository>();
             services.AddTransient<IPlayerEquipamentoRepository, PlayerEquipamentoRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
         }
     }
 }
