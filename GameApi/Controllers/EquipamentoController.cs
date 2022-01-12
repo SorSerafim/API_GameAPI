@@ -2,6 +2,7 @@
 using GameApi.Domain.Interfaces.ServiceInterfaces;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -19,6 +20,7 @@ namespace GameApi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Adicionar(CreateEquipamentoDto equipamento)
         {
             _service.AdicionaEquipamento(equipamento);
@@ -26,6 +28,7 @@ namespace GameApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult RetornaTodos()
         {
             List<ReadEquipamentoDto> listDto = _service.RetornaTodosOsEquipamentos();
@@ -34,6 +37,7 @@ namespace GameApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public IActionResult RetornaPorId(int id)
         {
             ReadEquipamentoDto equipamentoDto = _service.RetornaEquipamentoPorId(id);
@@ -42,6 +46,7 @@ namespace GameApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Manager")]
         public IActionResult DeletaPorId(int id)
         {
             Result resultado = _service.DeletaEquipamento(id);
@@ -50,6 +55,7 @@ namespace GameApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Manager")]
         public IActionResult AtualizaPorId(int id, CreateEquipamentoDto equipamentoDto)
         {
             Result resultado = _service.AtualizaEquipamento(id, equipamentoDto);

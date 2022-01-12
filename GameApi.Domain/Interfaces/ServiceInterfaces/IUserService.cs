@@ -1,4 +1,5 @@
 ﻿using FluentResults;
+using GameApi.Domain.Models;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
 using System.Collections.Generic;
@@ -12,5 +13,6 @@ namespace GameApi.Domain.Interfaces.ServiceInterfaces
         void AdicionaUser(CreateUserDto createDto);
         Result AtualizaUser(int id, CreateUserDto createDto);
         Result DeletaUser(int id);
+        User Get(string user, string password);
     }
 }

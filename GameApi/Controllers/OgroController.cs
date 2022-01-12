@@ -2,6 +2,7 @@
 using GameApi.Domain.Interfaces.ServiceInterfaces;
 using GameApi.Shared.Dtos.Create;
 using GameApi.Shared.Dtos.Read;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -19,6 +20,7 @@ namespace GameApi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Adicionar(CreateOgroDto ogroDto)
         {
             _service.AdicionaOgro(ogroDto);
@@ -26,6 +28,7 @@ namespace GameApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult RetornaTodos()
         {
             List<ReadOgroDto> listDto = _service.RetornaTodosOsOgros();
@@ -34,6 +37,7 @@ namespace GameApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Manager")]
         public IActionResult DeletaPorId(int id)
         {
             Result resultado = _service.DeletaOgro(id);
@@ -42,6 +46,7 @@ namespace GameApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Manager")]
         public IActionResult AtualizaPorId(int id, CreateOgroDto ogroDto)
         {
             Result resultado = _service.AtualizaOgro(id, ogroDto);
