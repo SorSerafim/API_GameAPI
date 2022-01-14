@@ -21,7 +21,7 @@ namespace GameApi.Controllers
             _token = tokenService;
         }
 
-        [HttpPost]
+        [HttpPost("Cadastro")]
         public IActionResult Adicionar(CreateUserDto createDto)
         {
             _service.AdicionaUser(createDto);

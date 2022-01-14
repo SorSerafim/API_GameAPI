@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameApi", "GameApi\GameApi.csproj", "{1729AE9B-6519-4C85-A9D9-0D97201623F0}"
 EndProject
@@ -11,7 +11,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameApi.Data", "GameApi.Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameApi.Shared", "GameApi.Shared\GameApi.Shared.csproj", "{A565E20F-F760-4FF9-B0E8-605E27B1682E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameApi.Application", "GameApi.Application\GameApi.Application.csproj", "{2EBF61E4-628B-40E9-B127-570A0A5A7C19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameApi.Application", "GameApi.Application\GameApi.Application.csproj", "{2EBF61E4-628B-40E9-B127-570A0A5A7C19}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6.0 - Test", "6.0 - Test", "{F90E46B4-8688-4DCE-96DD-B97AD5525EDB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.0 - Presentation", "1.0 - Presentation", "{033B7700-49C6-4831-BD6B-8C959EF6D08C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.0 - Application", "2.0 - Application", "{BEE6BDF7-44A2-4380-B7F6-C85207CDEBF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.0 - Domain", "3.0 - Domain", "{625C9DB3-E9D7-4666-A772-8A752EBCE2B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.0 - Data", "4.0 - Data", "{4A2E9A4F-6701-4F7F-9214-6BFC3765AB61}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.0 - Crosscutting", "5.0 - Crosscutting", "{5959362F-1095-4018-900B-2C88760D13D1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation.Tests", "Presentation.Tests\Presentation.Tests.csproj", "{A4D97FC1-072E-44D7-B14B-A8DC6320FD88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Tests", "Application.Tests\Application.Tests.csproj", "{7C3DF49C-0D2A-476F-BCAD-F7790CA4E384}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +55,26 @@ Global
 		{2EBF61E4-628B-40E9-B127-570A0A5A7C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EBF61E4-628B-40E9-B127-570A0A5A7C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EBF61E4-628B-40E9-B127-570A0A5A7C19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4D97FC1-072E-44D7-B14B-A8DC6320FD88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4D97FC1-072E-44D7-B14B-A8DC6320FD88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4D97FC1-072E-44D7-B14B-A8DC6320FD88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4D97FC1-072E-44D7-B14B-A8DC6320FD88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C3DF49C-0D2A-476F-BCAD-F7790CA4E384}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C3DF49C-0D2A-476F-BCAD-F7790CA4E384}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C3DF49C-0D2A-476F-BCAD-F7790CA4E384}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C3DF49C-0D2A-476F-BCAD-F7790CA4E384}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1729AE9B-6519-4C85-A9D9-0D97201623F0} = {033B7700-49C6-4831-BD6B-8C959EF6D08C}
+		{3DABC389-5E6E-41BF-A8EC-5A816AE15ECA} = {625C9DB3-E9D7-4666-A772-8A752EBCE2B5}
+		{725DF860-DD3B-4024-921F-8EBCCF3FB0A8} = {4A2E9A4F-6701-4F7F-9214-6BFC3765AB61}
+		{A565E20F-F760-4FF9-B0E8-605E27B1682E} = {5959362F-1095-4018-900B-2C88760D13D1}
+		{2EBF61E4-628B-40E9-B127-570A0A5A7C19} = {BEE6BDF7-44A2-4380-B7F6-C85207CDEBF3}
+		{A4D97FC1-072E-44D7-B14B-A8DC6320FD88} = {F90E46B4-8688-4DCE-96DD-B97AD5525EDB}
+		{7C3DF49C-0D2A-476F-BCAD-F7790CA4E384} = {F90E46B4-8688-4DCE-96DD-B97AD5525EDB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A738E97B-CCBA-44D6-96EA-228EE9556B5D}
