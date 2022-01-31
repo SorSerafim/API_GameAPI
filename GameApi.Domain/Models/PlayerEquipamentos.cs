@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace GameApi.Domain.Models
+﻿namespace GameApi.Domain.Models
 {
     public class PlayerEquipamentos : Entidade
     {

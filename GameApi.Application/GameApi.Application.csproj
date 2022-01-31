@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GameApi.Data\GameApi.Data.csproj" />
     <ProjectReference Include="..\GameApi.Domain\GameApi.Domain.csproj" />
   </ItemGroup>

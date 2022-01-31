@@ -1,6 +1,7 @@
 ﻿using GameApi.Data.Context;
 using GameApi.Domain.Interfaces;
 using GameApi.Domain.Models;
+using GameApi.Shared.Dtos.Create;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;

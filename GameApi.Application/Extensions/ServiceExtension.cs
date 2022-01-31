@@ -1,6 +1,8 @@
 ﻿using GameApi.Application.Services;
 using GameApi.Domain.Interfaces.ServiceInterfaces;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace GameApi.Application.Extensions
 {
@@ -13,6 +15,7 @@ namespace GameApi.Application.Extensions
             services.AddTransient<IOgroService, OgroService>();
             services.AddTransient<IEquipamentoService, EquipamentoService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddMediatR(Assembly.GetExecutingAssembly());
         }
     }
 }

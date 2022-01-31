@@ -1,75 +1,55 @@
-﻿using FluentResults;
-using GameApi.Domain.Interfaces.ServiceInterfaces;
-using GameApi.Shared.Dtos.Create;
-using GameApi.Shared.Dtos.Read;
+﻿using GameApi.Shared.Dtos.Create;
+using GameApi.Shared.Request;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GameApi.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class PlayerController : ControllerBase
+    public class PlayerController : BaseController
     {
-        private IPlayerService _service;
-
-        public PlayerController(IPlayerService service)
+        public PlayerController(IMediator mediator) : base(mediator)
         {
-             _service = service;
         }
 
         [HttpPost]
         [Authorize]
-        public IActionResult Adicionar(CreatePlayerDto createDto)
+        public async Task<IActionResult> Adicionar(CreatePlayerDto createDto)
         {
-            _service.AdicionaPlayer(createDto);
+            await _mediator.Publish(new AdicionaPlayerRequest(createDto));
             return Ok();
         }
 
         [HttpGet]
         [Authorize]
-        public IActionResult RetornaTodos()
+        public async Task<IActionResult> RetornaTodos()
         {
-            List<ReadPlayerDto> listDto = _service.RetornaTodosOsPlayers();
-            if(listDto != null) return Ok(listDto);
-            return NoContent();
+            return Ok(await _mediator.Send(new RetornaListaDePlayersRequest()));
         }
 
         [HttpGet("{id}")]
-        [Authorize]
-        public IActionResult RetornaPorId(int id)
+        public async Task<IActionResult> RetornaPorIdMediatR(int id)
         {
-            ReadPlayerDto readDto = _service.RetornaPlayerPorId(id);
-            if (readDto != null) return Ok(readDto);
-            return NoContent();
-        }
-
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> RetornaPorIdAsync(int id)
-        //{
-        //    ReadPlayerDto readDto = await _service.RetornaPlayerPorIdAsync(id);
-        //    if(readDto != null) return Ok(readDto);
-        //    return NoContent();
-        //} 
+            return Ok(await _mediator.Send(new RetornaPlayerPorIdRequest(id)));
+        } 
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "Manager")]
-        public IActionResult DeletaPorId(int id)
+        public async Task<IActionResult> DeletaPorId(int id)
         {
-            Result resultado = _service.DeletaPlayer(id);
-            if (resultado.IsFailed) return NotFound();
-            return NoContent();
+            await _mediator.Publish(new DeletaPlayerPorIdRequest(id));
+            return Ok();
         }
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Manager")]
-        public IActionResult AtualizaPorId(int id, CreatePlayerDto createDto)
+        public async Task<IActionResult> AtualizaPorId(int id, CreatePlayerDto createDto)
         {
-            Result resultado = _service.AtualizaPlayer(id, createDto);
-            if(resultado.IsFailed) return NotFound();
-            return NoContent();
+            await _mediator.Publish(new AtualizaPlayerPorIdRequest(id, createDto));
+            return Ok();
         }
     }
 }
